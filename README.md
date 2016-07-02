@@ -1,4 +1,4 @@
-# practices
+# react-isomorphic
 
 #### 开发约定
 * 代码风格统一，安装 [EditorConfig](http://editorconfig.org/#download) 插件
