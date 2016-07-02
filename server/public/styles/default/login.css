@@ -1,0 +1,131 @@
+@charset "utf-8";
+body {
+	font-family: "Microsoft YaHei", Helvetica, Arial, sans-serif;
+	font-size: 13px;
+	line-height: 1.42857143;
+	color: #222222;
+	background-color: #fafafa;
+	overflow-y: scroll;
+}
+
+.login-nav {
+	background-color: #FFF;
+	height: 89px;
+	padding-left: 200px;
+	padding-top: 30px;
+}
+
+.login-nav .logintext {
+	vertical-align: bottom;
+	font-weight: 600;
+	color: #5d5d5d;
+	font-size: 22px;
+}
+
+.login-content {
+	min-height: 510px;
+	padding-top: 50px;
+}
+
+.login-form {
+	border: 1px solid #E3E3E3;
+	background-color: #fff;
+	/*box-shadow: 6px 6px 10px 0px #999999;*/
+	padding: 15px;
+}
+.content-form{
+	padding: 25px 15px 40px;
+}
+.form-control{
+	border-radius:0px;
+}
+.login-title {
+	height: 18px;
+	line-height: 18px;
+	font-size: 16px;
+	color: #3c3c3c;
+	font-weight: 700;
+	margin-bottom: 25px;
+	display: block;
+}
+.register{
+	float: right;
+	margin-bottom: 10px;
+}
+.forget-pwd{
+	float: left;
+}
+.caret {
+	position: relative;
+	top: -10px;
+	float: right;
+}
+.accountbtn{
+	width: 100%;
+	border-radius: 0px;
+	height: 38px;
+}
+span#sp-accountContext {
+	text-align: left;
+	display: block;
+}
+.login-box {
+	margin-top: 20px;
+	margin-bottom: 50px;
+}
+.login-box a {
+	color: #6c6c6c;
+	text-decoration: none;
+
+	}
+.login-box a:hover{
+	color: indianred;
+}
+.btn-width{
+	width: 100%;
+	height: 40px;
+}
+.dropdown-menu {
+   width: 100%;
+}
+.iconleft{
+	display: inline;
+}
+.glyphicon{
+	top: 0px;
+}
+.input-group-addon{
+	border-radius: 0px;
+}
+.form-control{
+	height: 38px;;
+}
+.errorMsg{
+	width: 100%;
+	height: 42px;
+	line-height: 42px;
+	background-color:#fff7d1;
+	border: 1px solid #e5debc;
+	color: #999;
+	border-bottom: 0px;
+	display: none;
+}
+#accountSelect li {
+	padding: 5px 20px;
+}
+#accountSelect li:hover {
+	background: #ecf7e3;
+	cursor: pointer;
+}
+.glyphicon-remove-sign:before {
+	margin: 10px;
+	color: #E76464;
+	font-size: medium;
+}
+.footer {
+	font-size: 12px;
+	line-height: 110px;
+	text-align: center;
+	height: 110px;
+	color: #4f4f4f;
+}
