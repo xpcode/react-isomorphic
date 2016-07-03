@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { Router, Route, Link, browserHistory } from 'react-router'
 import {
   Header,
@@ -6,7 +7,7 @@ import {
   HtmlBase,
 } from '../../components'
 
-export default class Login extends React.Component {
+class Login extends React.Component {
   handleLogin() {
     alert(9)
     debugger
@@ -14,10 +15,6 @@ export default class Login extends React.Component {
   }
 
   render() {
-    console.log(this.props)
-    if (this.props.title) {
-      return <HtmlBase/>
-    }
     return (
       <HtmlBase {...this.props}>
         <div className="login-nav">
@@ -73,3 +70,8 @@ export default class Login extends React.Component {
     )
   }
 }
+
+// if (global.document) {
+//   Login = connect()(Login)
+// }
+module.exports=  Login

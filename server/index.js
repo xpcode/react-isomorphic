@@ -12,7 +12,9 @@ var viewPath = path.join(__dirname, '../common/containers')
 // 支持在 server 的路由程序里直接 render 出 ReactComponent
 react(app, {
   beautify: true,
-  views: viewPath
+  views: viewPath,
+  cache: false,
+  internals: true,
 })
 
 app
