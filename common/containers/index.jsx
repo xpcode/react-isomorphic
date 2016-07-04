@@ -3,7 +3,7 @@ import UserList from './user/list'
 import Login from './user/login'
 import Error404 from './error/404'
 
-export default {
+export {
   UserInfo,
   UserList,
   Login,

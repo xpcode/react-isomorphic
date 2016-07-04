@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Router, Route, Link, browserHistory } from 'react-router'
+import { Router, Route, Link } from 'react-router'
 import {
   Header,
   Footer,
@@ -8,13 +8,19 @@ import {
 } from '../../components'
 
 class Login extends React.Component {
+  constructor(){
+    super()
+    this.handleLogin=this.handleLogin.bind(this)
+  }
+
   handleLogin() {
-    alert(9)
-    debugger
-    browserHistory.replaceState(null, '/user/1')
+    const { history } = this.props
+
+    history.pushState(null, '/user/1')
   }
 
   render() {
+    console.log('未解决：浏览器重新渲染的问题')
     return (
       <HtmlBase {...this.props}>
         <div className="login-nav">

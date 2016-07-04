@@ -3,7 +3,7 @@ import {
   Header,
   Footer,
   PageNotFound,
-} from 'common/components'
+} from '../../../common/components'
 
 export default class Error404 extends React.Component {
   render() {

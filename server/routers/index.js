@@ -1,7 +1,7 @@
 var router = require('koa-router')()
 
 router.get('/', function* (next) {
-  this.render('index', {
+  this.render('home/index', {
     title: '首页',
     list: [
       'hello koa',

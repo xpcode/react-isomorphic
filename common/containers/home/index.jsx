@@ -1,5 +1,5 @@
 import React from 'react'
-import HtmlBase from 'common/components/base/__html'
+import HtmlBase from '../../components/base/__html'
 
 export default class Index extends React.Component {
   render() {
