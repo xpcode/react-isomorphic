@@ -5,18 +5,20 @@ import { Provider } from 'react-redux'
 import { browserHistory, Router } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 
-import configureStore from 'client/store/configureStore'
-import routes from 'client/routes'
+import configureStore from 'common/utils/configureStore'
+import Isomorph from 'common/components/base/isomorph'
 
 const store = configureStore(window.__INITIAL_STATE__)
 const history = syncHistoryWithStore(browserHistory, store)
 const rootElement = document.getElementById('container')
+const _props = {
+  store,
+  history,
+}
 
 ReactDOM.unmountComponentAtNode(rootElement)
 ReactDOM.render(
-  <Provider store={store}>
-    <Router history={history} routes={routes}/>
-  </Provider>,
+  <Isomorph {..._props}/>,
   rootElement
 )
 

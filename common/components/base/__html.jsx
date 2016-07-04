@@ -1,19 +1,37 @@
 import React from 'react'
+import { createStore } from 'redux'
+import { browserHistory, createMemoryHistory } from 'react-router'
+import { syncHistoryWithStore } from 'react-router-redux'
+
+import configureStore from '../../utils/configureStore'
+import platform from '../../utils/platform'
+import Isomorph from './isomorph'
 
 export default class HtmlBase extends React.Component {
   render() {
-    // 判断是否在浏览器环境
-    if (global.document) {
-      return <div>{this.props.children}</div>
+    if(platform.isServer){
+      console.log('__html props: ', this.props)
     }
 
     const {
       title,
-      initialState,
       keyword,
       description,
-      children,
+      initialState,
+      req,
     } = this.props
+
+    const store = configureStore(initialState)
+
+    const history = platform.isBrowser ?
+      syncHistoryWithStore(browserHistory, store) :
+      createMemoryHistory(req.path)
+
+    const _props = {
+      store,
+      history,
+      initialState,
+    }
 
     const scriptInnerHtml = `window.__INITIAL_STATE__ = ${JSON.stringify(initialState)};`
 
@@ -30,7 +48,7 @@ export default class HtmlBase extends React.Component {
         </head>
         <body>
           <div id="container">
-            {children}
+            <Isomorph {..._props}/>
           </div>
           <script dangerouslySetInnerHTML={{ __html: scriptInnerHtml }}></script>
           <script src="/build/main.js"></script>

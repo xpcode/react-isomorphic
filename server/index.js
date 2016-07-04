@@ -7,14 +7,14 @@ var serve = require('koa-static')
 var react = require('koa-react-view')
 
 var app = module.exports = koa()
-var viewPath = path.join(__dirname, '../common/containers')
+var viewPath = path.join(__dirname, '../common/components')
 
 // 支持在 server 的路由程序里直接 render 出 ReactComponent
 react(app, {
   beautify: true,
   views: viewPath,
   cache: false,
-  internals: true,
+  internals: false,
 })
 
 app

@@ -6,7 +6,9 @@ import {
   isPlainObject,
   isFunction,
 } from 'lodash'
-import rootReducer from 'common/reducers'
+
+import platform from './platform'
+import rootReducer from '../reducers'
 
 const stateTransformer = states => {
   let finalStates = {}
@@ -40,13 +42,13 @@ export default function configureStore(initialState) {
       collapsed,
       colors,
     })),
-    window.devToolsExtension ? window.devToolsExtension() : f => f
+    platform.isBrowser && window.devToolsExtension ? window.devToolsExtension() : f => f
   ))
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
-    module.hot.accept('common/reducers', () => {
-      const nextRootReducer = require('common/reducers').default
+    module.hot.accept('../reducers', () => {
+      const nextRootReducer = require('../reducers').default
       store.replaceReducer(nextRootReducer)
     })
   }

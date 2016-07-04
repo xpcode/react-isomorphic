@@ -6,11 +6,12 @@ import {
   Footer,
   HtmlBase,
 } from '../../components'
+import platform from '../../utils/platform'
 
 class Login extends React.Component {
-  constructor(){
+  constructor() {
     super()
-    this.handleLogin=this.handleLogin.bind(this)
+    this.handleLogin = this.handleLogin.bind(this)
   }
 
   handleLogin() {
@@ -20,9 +21,12 @@ class Login extends React.Component {
   }
 
   render() {
-    console.log('未解决：浏览器重新渲染的问题')
+    if (platform.isBrowser) {
+      console.log('未解决：浏览器重新渲染的问题')
+    }
+
     return (
-      <HtmlBase {...this.props}>
+      <div>
         <div className="login-nav">
           <span className="logintext m-l-5">账号登录</span>
         </div>
@@ -72,7 +76,7 @@ class Login extends React.Component {
         <div className="footer">
           <div className="text-center  m-t-15">©2016 用友优普信息技术有限公司 平台技术支持 京ICP备05007539号-10</div>
         </div>
-      </HtmlBase>
+      </div>
     )
   }
 }
@@ -80,4 +84,4 @@ class Login extends React.Component {
 // if (global.document) {
 //   Login = connect()(Login)
 // }
-module.exports=  Login
+module.exports = Login

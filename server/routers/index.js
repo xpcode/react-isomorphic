@@ -1,5 +1,7 @@
 var router = require('koa-router')()
 
+const __html = 'base/__html'
+
 router.get('/', function* (next) {
   this.render('home/index', {
     title: '首页',
@@ -11,8 +13,20 @@ router.get('/', function* (next) {
 })
 
 router.get('/user/login', function* () {
-  this.render('user/login', {
-    title: '用户登陆'
+  this.render(__html, {
+    title: '用户登陆',
+    initialState: {
+      user: [
+        {
+          name: 'aa'
+        }, {
+          name: 'bb'
+        }
+      ]
+    },
+    req: {
+      path: this.path,
+    }
   })
 })
 
