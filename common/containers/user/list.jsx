@@ -5,7 +5,6 @@ export default class UserList extends React.Component {
     super()
   }
   render() {
-    debugger
     return (
       <div>
         <span>11</span>

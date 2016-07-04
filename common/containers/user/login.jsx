@@ -68,7 +68,6 @@ class Login extends React.Component {
                   </div>
                   <button className="btn btn-danger btn-width" onClick={this.handleLogin} id="submit">登录</button>
                 </div>
-
               </div>
             </div>
           </div>

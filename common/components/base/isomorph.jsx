@@ -1,9 +1,8 @@
 import React from 'react'
 import { Router, Route, IndexRoute } from 'react-router'
 import { Provider } from 'react-redux'
-import {
-  Login
-} from '../../containers'
+
+import routes from '../../routes'
 import platform from '../../utils/platform'
 
 export default class Isomorph extends React.Component {
@@ -16,14 +15,7 @@ export default class Isomorph extends React.Component {
 
     return (
       <Provider store={store}>
-        <Router history={history}>
-          <Route path="/">
-            <IndexRoute component={Login}/>
-            <Route path="user">
-              <Route path="login" component={Login} />
-            </Route>
-          </Route>
-        </Router>
+        <Router history={history} routes={routes}/>
       </Provider>
     )
   }

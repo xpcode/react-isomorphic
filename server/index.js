@@ -13,8 +13,7 @@ var viewPath = path.join(__dirname, '../common/components')
 react(app, {
   beautify: true,
   views: viewPath,
-  cache: false,
-  internals: false,
+  internals: true,
 })
 
 app
@@ -44,7 +43,7 @@ if (process.argv.slice(2).shift() === 'development') {
   var webpack = require('webpack')
   var webpackDevMiddleware = require('koa-webpack-dev-middleware')
   var webpackHotMiddleware = require('koa-webpack-hot-middleware')
-  var webpackDevConfig = require('../webpack.config.js')
+  var webpackDevConfig = require('../webpack.dev.config.js')
   var compiler = webpack(webpackDevConfig)
 
   app

@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node --nolazy --harmony server/index.js development",
+    "start": "node --nolazy --harmony server/index.js",
     "install": "npm start",
-    "debug": "npm start",
-    "build": "npm start && BABEL_ENV=production webpack --config webpack-prod.config.js --colors --display-error-details --progress"
+    "debug": "node --nolazy --harmony server/index.js development",
+    "build": "BABEL_ENV=production webpack --config webpack.prod.config.js --colors --display-error-details --progress"
   },
   "author": "C. <4019980@qq.com> (https://github.com/xpcode)",
   "license": "ISC",

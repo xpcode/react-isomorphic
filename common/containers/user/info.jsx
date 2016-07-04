@@ -8,11 +8,11 @@ import {
 export default class UserInfo extends React.Component {
   render() {
     return (
-      <HtmlBase {...this.props}>
+      <div>
         <Header/>
         <span>UserInfo1</span>
         <Footer/>
-      </HtmlBase>
+      </div>
     )
   }
 }
