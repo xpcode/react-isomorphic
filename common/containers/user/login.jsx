@@ -1,11 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Router, Route, Link } from 'react-router'
-import {
-  Header,
-  Footer,
-  HtmlBase,
-} from '../../components'
+
 import platform from '../../utils/platform'
 
 class Login extends React.Component {
@@ -16,13 +11,20 @@ class Login extends React.Component {
 
   handleLogin() {
     const { history } = this.props
-
     history.pushState(null, '/user/1')
   }
 
   render() {
-    if (platform.isBrowser) {
+    if (platform.isBrowser === true) {
       console.log('未解决：浏览器重新渲染的问题')
+    }
+
+    const { user } = this.props
+
+    if (user.loginStatus === 1) {
+      setTimeout(function () {
+        history.pushState(null, '/user/1')
+      }, 300)
     }
 
     return (
@@ -80,7 +82,11 @@ class Login extends React.Component {
   }
 }
 
-// if (global.document) {
-//   Login = connect()(Login)
-// }
-module.exports = Login
+const mapStateToProps = (state, ownProps) => {
+  console.log(state)
+  return {
+    user: state.user
+  }
+}
+
+module.exports = connect(mapStateToProps)(Login)

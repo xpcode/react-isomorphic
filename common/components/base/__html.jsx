@@ -9,8 +9,8 @@ import Isomorph from './isomorph'
 
 export default class HtmlBase extends React.Component {
   render() {
-    if(platform.isServer){
-      console.log('__html props: ', this.props)
+    if(platform.isServer === true){
+      console.log('__html props: ', JSON.stringify(this.props))
     }
 
     const {
@@ -30,10 +30,9 @@ export default class HtmlBase extends React.Component {
     const _props = {
       store,
       history,
-      initialState,
     }
 
-    const scriptInnerHtml = `window.__INITIAL_STATE__ = ${JSON.stringify(initialState)};`
+    const scriptInnerHtml = `window.__INITIAL_STATE__ = ${JSON.stringify(store.getState())};`
 
     return (
       <html>

@@ -1,4 +1,7 @@
-var router = require('./routers')
+// 将根目录下 common、client 文件夹的程序，从 es6 转到 es5
+require('babel-polyfill')
+var register = require('babel-register')
+var router = require('./controllers')
 var path = require('path')
 var koa = require('koa')
 var compress = require('koa-compress')
@@ -29,15 +32,6 @@ console.log('listening on port 3003')
 
 if (process.argv.slice(2).shift() === 'development') {
 
-  // 将根目录下 common、client 文件夹的程序，从 es6 转到 es5
-  var register = require('babel-register')
-
-  register({
-    only: [
-      path.join(__dirname, '../common'),
-      path.join(__dirname, '../client'),
-    ]
-  })
 
   // 热替换
   var webpack = require('webpack')
