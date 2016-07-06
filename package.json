@@ -3,18 +3,12 @@
   "version": "0.1.0",
   "description": "isomorphic web app for ucloud ui.",
   "main": "index.js",
-  "babel": {
-    "presets": [
-      "es2015-node5"
-    ]
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "NODE_ENV=development node src/server/index.js",
+    "start": "NODE_ENV=production && node lib/server/index.js",
     "install": "",
-    "debug:client": "BABEL_ENV=development; NODE_ENV=development; node src/server/compiler/index.jsx",
-    "debug:server": "NODE_ENV=development; nodemon -w src/server -w src/common --exec babel-node-debug -c src/server/app.jsx",
-    "debug": "npm run debug:server && npm run debug:client",
+    "debug:client": "webpack-dev-server --progress --colors --display-error-details --display-modules --config webpack.dev.config.js",
+    "debug:server": "nodemon -w src/server -w src/common --exec babel-node-debug src/server/app.jsx",
     "build:server": "BABEL_ENV=production; echo '开始编译：后端程序'; babel src -d lib --ignore client; echo '结束编译：后端程序'",
     "build:client": "BABEL_ENV=production; echo '开始编译：前端程序'; webpack --config webpack.prod.config.js --colors --progress; echo '结束编译：前端程序'",
     "build": "npm run build:server; npm run build:client"
@@ -55,13 +49,13 @@
     "babel-runtime": "^6.9.2",
     "css-loader": "^0.23.1",
     "file-loader": "^0.9.0",
-    "koa-webpack-dev-middleware": "^1.2.1",
-    "koa-webpack-hot-middleware": "^1.0.3",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
-    "webpack": "^1.13.1"
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1",
+    "webpack-hot-middleware": "^2.12.1"
   },
   "peerDependencies": {
     "babel-cli": ">=6.10.1"

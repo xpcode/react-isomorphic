@@ -50,7 +50,7 @@ export default class HtmlBase extends React.Component {
             <Isomorph {..._props}/>
           </div>
           <script dangerouslySetInnerHTML={{ __html: scriptInnerHtml }}></script>
-          <script src="/build/main.js"></script>
+          <script src="http://localhost:3004/build/main.js"></script>
         </body>
       </html>
     )

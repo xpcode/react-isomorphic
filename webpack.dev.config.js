@@ -2,12 +2,9 @@ var path = require('path')
 var webpack = require('webpack')
 
 module.exports = {
-  entry: [
-    'webpack-hot-middleware/client',
-    './src/client/index.jsx',
-  ],
+  entry: './src/client/index.jsx',
   output: {
-    publicPath: 'build',
+    publicPath: 'http://localhost:3004/build',
     path: path.join(__dirname, './public/build/'),
     filename: 'main.js'
   },
@@ -50,5 +47,14 @@ module.exports = {
     new webpack.NoErrorsPlugin(),
     new webpack.HotModuleReplacementPlugin(),
   ],
+  devServer: {
+    headers: {
+      "Access-Control-Allow-Origin": "*"
+    },
+    devtool: 'eval',
+    hot: true,
+    inline: true,
+    port: 3004,
+  },
   devtool: 'source-map',
 }
