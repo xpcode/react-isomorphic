@@ -12,12 +12,12 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "NODE_ENV=development node src/server/index.js",
     "install": "",
-    "debug:client": "BABEL_ENV=development NODE_ENV=development node src/server/compiler/index.jsx",
-    "debug:server": "NODE_ENV=development nodemon -w src/server -w src/common --exec babel-node-debug -c src/server/app.jsx",
+    "debug:client": "BABEL_ENV=development; NODE_ENV=development; node src/server/compiler/index.jsx",
+    "debug:server": "NODE_ENV=development; nodemon -w src/server -w src/common --exec babel-node-debug -c src/server/app.jsx",
     "debug": "npm run debug:server && npm run debug:client",
-    "build:server": "BABEL_ENV=production babel src -d lib --ignore client",
-    "build:client": "BABEL_ENV=production webpack --config webpack.prod.config.js --colors --progress",
-    "build": "npm run build:server && npm run build:client"
+    "build:server": "BABEL_ENV=production; echo '开始编译：后端程序'; babel src -d lib --ignore client; echo '结束编译：后端程序'",
+    "build:client": "BABEL_ENV=production; echo '开始编译：前端程序'; webpack --config webpack.prod.config.js --colors --progress; echo '结束编译：前端程序'",
+    "build": "npm run build:server; npm run build:client"
   },
   "author": "C. <4019980@qq.com> (https://github.com/xpcode)",
   "license": "ISC",
