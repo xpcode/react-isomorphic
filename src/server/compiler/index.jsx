@@ -6,7 +6,7 @@ var webpackDevConfig = require('../../../webpack.dev.config.js')
 var compiler = webpack(webpackDevConfig)
 
 app
-  .use(require("webpack-dev-middleware")(compiler, {
+  .use(require("koa-webpack-dev-middleware")(compiler, {
     publicPath: webpackDevConfig.output.publicPath,
     noInfo: false,
     internals: true,
@@ -14,7 +14,7 @@ app
       colors: true
     }
   }))
-  .use(require("webpack-hot-middleware")(compiler, {
+  .use(require("koa-webpack-hot-middleware")(compiler, {
     path: "http://localhost:3004/__webpack_hmr"
   }))
   .listen(3004)
