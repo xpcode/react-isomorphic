@@ -11,7 +11,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "NODE_ENV=development node src/server/index.js",
-    "install": "npm run debug",
+    "install": "",
     "debug:client": "BABEL_ENV=development NODE_ENV=development node src/server/compiler/index.jsx",
     "debug:server": "NODE_ENV=development nodemon -w src/server -w src/common --exec babel-node-debug -c src/server/app.jsx",
     "debug": "npm run debug:server && npm run debug:client",

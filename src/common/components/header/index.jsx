@@ -14,7 +14,7 @@ export default class Header extends React.Component {
             <li><Link to="/user/login">登陆</Link></li>
             <li><Link to="/user/1">测试</Link></li>
             <li>审批</li>
-            <li>日程1</li>
+            <li>日程12</li>
           </ul>
         </div>
       </div>

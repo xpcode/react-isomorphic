@@ -35,23 +35,20 @@ app
 
 console.log('listening on port 3003 -- NODE_ENV', process.env.NODE_ENV)
 
-// if (process.env.NODE_ENV !== 'production') {
 
-//   // 热替换
-//   var webpack = require('webpack')
-//   var webpackDevMiddleware = require('koa-webpack-dev-middleware')
-//   var webpackHotMiddleware = require('koa-webpack-hot-middleware')
-//   var webpackDevConfig = require('../../webpack.dev.config.js')
-//   var compiler = webpack(webpackDevConfig)
+if (process.env.NODE_ENV !== 'production') {
+  var webpack = require('webpack')
+  var webpackDevConfig = require('../../webpack.dev.config.js')
+  var compiler = webpack(webpackDevConfig)
 
-//   app
-//     .use(webpackDevMiddleware(compiler, {
-//       publicPath: webpackDevConfig.output.publicPath,
-//       noInfo: false,
-//       internals: true,
-//       stats: {
-//         colors: true
-//       }
-//     }))
-//     .use(webpackHotMiddleware(compiler))
-// }
+  app
+    .use(require("koa-webpack-dev-middleware")(compiler, {
+      publicPath: webpackDevConfig.output.publicPath,
+      noInfo: false,
+      internals: true,
+      stats: {
+        colors: true
+      }
+    }))
+    .use(require("koa-webpack-hot-middleware")(compiler))
+}

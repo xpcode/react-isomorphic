@@ -1,15 +1,12 @@
 var koa = require('koa')
+var app = module.exports = koa()
+
 var webpack = require('webpack')
-var webpackDevMiddleware = require('koa-webpack-dev-middleware')
-var webpackHotMiddleware = require('koa-webpack-hot-middleware')
 var webpackDevConfig = require('../../../webpack.dev.config.js')
 var compiler = webpack(webpackDevConfig)
 
-var app = module.exports = koa()
-
-app.listen(3004)
 app
-  .use(webpackDevMiddleware(compiler, {
+  .use(require("webpack-dev-middleware")(compiler, {
     publicPath: webpackDevConfig.output.publicPath,
     noInfo: false,
     internals: true,
@@ -17,10 +14,10 @@ app
       colors: true
     }
   }))
-  .use(webpackHotMiddleware(compiler, {
+  .use(require("webpack-hot-middleware")(compiler, {
     path: "http://localhost:3004/__webpack_hmr"
   }))
-
+  .listen(3004)
 
 // import koa from 'koa'
 // import path from 'path'

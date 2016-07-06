@@ -7,7 +7,7 @@ module.exports = {
     './src/client/index.jsx',
   ],
   output: {
-    publicPath: 'http://localhost:3004/build',
+    publicPath: 'build',
     path: path.join(__dirname, './public/build/'),
     filename: 'main.js'
   },
