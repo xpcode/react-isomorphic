@@ -1,4 +1,3 @@
-import 'babel-polyfill'
 import koa from 'koa'
 import compress from 'koa-compress'
 import logger from 'koa-logger'
@@ -11,7 +10,6 @@ import router from './controllers'
 const app = module.exports = koa()
 const viewPath = path.join(__dirname, '../common/components')
 
-// 支持在 server 的路由程序里直接 render 出 ReactComponent
 if (process.env.NODE_ENV !== 'production') {
   react(app, {
     extname: 'jsx',
@@ -35,8 +33,7 @@ app
   .use(compress())
   .listen(3003)
 
-console.log('listening on port 3003 -- ', process.env.NODE_ENV)
-
+console.log('listening on port 3003 -- NODE_ENV', process.env.NODE_ENV)
 
 // if (process.env.NODE_ENV !== 'production') {
 

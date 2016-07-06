@@ -16,7 +16,7 @@ const _props = {
   history,
 }
 
-// ReactDOM.unmountComponentAtNode(rootElement)
+ReactDOM.unmountComponentAtNode(rootElement)
 ReactDOM.render(
   <Isomorph {..._props}/>,
   rootElement

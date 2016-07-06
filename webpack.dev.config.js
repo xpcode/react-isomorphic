@@ -17,6 +17,7 @@ module.exports = {
       common: path.join(__dirname, './common'),
       client: path.join(__dirname, './client'),
       immutable: path.join(__dirname, 'node_modules/immutable/dist/immutable.min'),
+      'react-router': path.join(__dirname, 'node_modules/react-router/umd/ReactRouter.min'),
     }
   },
   module: {
