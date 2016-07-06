@@ -1,5 +1,5 @@
 // 将根目录下 common、client 文件夹的程序，从 es6 转到 es5
-require('babel-polyfill')
+//require('babel-polyfill')
 var register = require('babel-register')
 var router = require('./controllers')
 var path = require('path')
