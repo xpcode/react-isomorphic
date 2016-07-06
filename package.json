@@ -3,12 +3,21 @@
   "version": "0.1.0",
   "description": "isomorphic web app for ucloud ui.",
   "main": "index.js",
+  "babel": {
+    "presets": [
+      "es2015-node5"
+    ]
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node --nolazy --harmony server/index.js",
-    "install": "npm start",
-    "debug": "node --nolazy --harmony server/index.js development",
-    "build": "BABEL_ENV=production webpack --config webpack.prod.config.js --colors --display-error-details --progress"
+    "start": "NODE_ENV=production node lib/server/app.js",
+    "install": "npm run debug",
+    "debug:client": "BABEL_ENV=development NODE_ENV=development node src/server/compiler/index.jsx",
+    "debug:server": "nodemon --watch src/common src/server --exec 'NODE_ENV=development node --nolazy --debug src/server/index.js'",
+    "debug": "npm run debug:server && npm run debug:client",
+    "build:server": "BABEL_ENV=production babel src -d lib --ignore client",
+    "build:client": "BABEL_ENV=production webpack --config webpack.prod.config.js --colors --progress",
+    "build": "npm run build:server && npm run build:client"
   },
   "author": "C. <4019980@qq.com> (https://github.com/xpcode)",
   "license": "ISC",
@@ -35,24 +44,25 @@
   },
   "devDependencies": {
     "babel-cli": "^6.10.1",
-    "babel-core": "^6.7.2",
+    "babel-core": "^6.10.4",
     "babel-loader": "^6.2.4",
+    "babel-polyfill": "^6.9.1",
     "babel-preset-es2015": "^6.6.0",
-    "babel-preset-react": "^6.5.0",
+    "babel-preset-es2015-node5": "^1.2.0",
+    "babel-preset-react": "^6.11.1",
     "babel-preset-react-hmre": "^1.1.1",
-    "babel-preset-stage-0": "^6.5.0",
-    "babel-preset-stage-1": "^6.5.0",
-    "babel-register": "^6.7.2",
-    "babel-runtime": "^6.6.1",
+    "babel-register": "^6.9.0",
+    "babel-runtime": "^6.9.2",
     "css-loader": "^0.23.1",
     "file-loader": "^0.9.0",
+    "koa-webpack-dev": "^1.0.3",
     "koa-webpack-dev-middleware": "^1.2.1",
-    "koa-webpack-hot-middleware": "^1.0.3",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
-    "webpack": "^1.13.1"
+    "webpack": "^1.13.1",
+    "webpack-hot-middleware": "^2.12.1"
   },
   "peerDependencies": {
     "babel-cli": ">=6.10.1"

@@ -4,10 +4,10 @@ var webpack = require('webpack')
 module.exports = {
   entry: [
     'webpack-hot-middleware/client',
-    './client/index',
+    './src/client/index.jsx',
   ],
   output: {
-    publicPath: '/build',
+    publicPath: 'http://localhost:3004/build',
     path: path.join(__dirname, './public/build/'),
     filename: 'main.js'
   },

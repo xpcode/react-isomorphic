@@ -12,7 +12,7 @@ export default class Isomorph extends React.Component {
       history,
       initialState,
     } = this.props
-
+ 
     return (
       <Provider store={store}>
         <Router history={history} routes={routes}/>

@@ -5,8 +5,8 @@ import { Provider } from 'react-redux'
 import { browserHistory, Router } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 
-import configureStore from 'common/utils/configureStore'
-import Isomorph from 'common/components/base/isomorph'
+import configureStore from '../common/utils/configureStore'
+import Isomorph from '../common/components/base/isomorph'
 
 const store = configureStore(window.__INITIAL_STATE__)
 const history = syncHistoryWithStore(browserHistory, store)
