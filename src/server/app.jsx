@@ -5,27 +5,16 @@ import react from 'koa-react-view'
 import serve from 'koa-static'
 import path from 'path'
 
+import {
+  viewhook,
+  matchRoute,
+} from './middlewares'
 import router from './controllers'
+import routes from '../common/routes';
 
-const app = module.exports = koa()
-const viewPath = path.join(__dirname, '../common/components')
-
-if (process.env.NODE_ENV !== 'production') {
-  react(app, {
-    extname: 'jsx',
-    beautify: true,
-    views: viewPath,
-    internals: true,
-  })
-} else {
-  react(app, {
-    extname: 'js',
-    views: viewPath,
-    internals: true,
-  })
-}
-
-app
+koa()
+  .use(matchRoute(routes))
+  .use(viewhook())
   .use(router.routes())
   .use(router.allowedMethods())
   .use(serve(path.join(__dirname, '../../static')))  // Serve static files
