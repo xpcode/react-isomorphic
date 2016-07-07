@@ -4,6 +4,7 @@ npm-debug.log
 
 # Exclude compiled files
 build
+bin
 
 # Exclude IDE project folders
 .idea
