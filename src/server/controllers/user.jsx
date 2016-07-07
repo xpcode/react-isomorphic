@@ -3,13 +3,13 @@ import Isomorph from '../../common/components/base/isomorph'
 
 export default router => {
 
-  router.get('/', function* (next) {
+  router.get('/', function (next) {
 
   })
 
-  router.get('/user/login', function* () {
+  router.get('/user/login', function (ctx) {
     const store = Isomorph.store()
-    const history = Isomorph.history(store, this.path)
+    const history = Isomorph.history(store, ctx.path)
     const pageInfo = {
       title: '用户登录',
       keyword: '',
@@ -19,15 +19,15 @@ export default router => {
     // TODO: 调用 dispatch，store 会得到数据
     // store.dispatch({type: ACTION_USER_GET_LIST})
 
-    this.render(<Isomorph store={store} history={history}/>, pageInfo)
+    ctx.render(<Isomorph store={store} history={history}/>, pageInfo)
   })
 
-  router.get('/user/:userId', function* () {
+  router.get('/user/:userId', function () {
     let userId = this.params.userId
 
   })
 
-  router.get('/users', function* () {
+  router.get('/users', function () {
 
   })
 

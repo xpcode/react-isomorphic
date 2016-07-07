@@ -1,7 +1,7 @@
 import React from 'react'
-import koaRouter from 'koa-router'
+import Router from 'koa-router'
 
-const router = koaRouter()
+const router = Router()
 export default router
 
 
@@ -11,5 +11,3 @@ user(router)
 // TODO: 增加其他模块的路由，如：
 // import report from './report'
 // report(router)
-
-// export default router

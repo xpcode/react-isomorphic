@@ -1,7 +1,4 @@
-import koa from 'koa'
-import compress from 'koa-compress'
-import logger from 'koa-logger'
-import react from 'koa-react-view'
+import Koa from 'koa'
 import serve from 'koa-static'
 import path from 'path'
 
@@ -12,14 +9,12 @@ import {
 import router from './controllers'
 import routes from '../common/routes'
 
-koa()
-  .use(matchRoute(routes))
+new Koa()
   .use(viewhook())
+  .use(matchRoute(routes))
   .use(router.routes())
   .use(router.allowedMethods())
-  .use(serve(path.join(__dirname, '../../static')))  // Serve static files
-  .use(logger())
-  .use(compress())
+  .use(serve(path.join(__dirname, '../../static')))
   .listen(3003)
 
-console.log('listening on port 3003 -- NODE_ENV', process.env.NODE_ENV)
+console.log('listening on port 3003 --', process.env.NODE_ENV)
