@@ -4,9 +4,9 @@ var webpack = require('webpack')
 module.exports = {
   entry: './src/client/index.jsx',
   output: {
-    publicPath: 'http://localhost:3004/build',
-    path: path.join(__dirname, './public/build/'),
-    filename: 'main.js'
+    publicPath: 'http://localhost:3004/',
+    path: path.join(__dirname, './static/'),
+    filename: 'scripts/bundle.js'
   },
   resolve: {
     extensions: ["", ".js", ".jsx"],

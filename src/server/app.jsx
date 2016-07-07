@@ -28,7 +28,7 @@ if (process.env.NODE_ENV !== 'production') {
 app
   .use(router.routes())
   .use(router.allowedMethods())
-  .use(serve(path.join(__dirname, 'public')))  // Serve static files
+  .use(serve(path.join(__dirname, '../../static')))  // Serve static files
   .use(logger())
   .use(compress())
   .listen(3003)

@@ -1,12 +1,12 @@
 import "es6-promise"
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Provider } from 'react-redux'
-import { browserHistory, Router } from 'react-router'
+import { browserHistory, match } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 
 import configureStore from '../common/utils/configureStore'
 import Isomorph from '../common/components/base/isomorph'
+import routes from '../common/routes'
 
 const store = configureStore(window.__INITIAL_STATE__)
 const history = syncHistoryWithStore(browserHistory, store)
@@ -16,11 +16,19 @@ const _props = {
   history,
 }
 
+const { pathname, search, hash } = window.location;
+const location = `${pathname}${search}${hash}`;
+
 // ReactDOM.unmountComponentAtNode(rootElement)
-ReactDOM.render(
-  <Isomorph {..._props}/>,
-  rootElement
-)
+
+console.log('未解决：异步路由的前后端配置')
+
+match({ routes, location }, () => {
+  ReactDOM.render(
+    <Isomorph {..._props}/>,
+    rootElement
+  )
+})
 
 if (module.hot) {
   module.hot.accept()

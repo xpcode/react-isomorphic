@@ -7,6 +7,17 @@ import {
   UserList,
 } from '../containers'
 
+const requireAuthentication = (nextState, replace, cb) => {
+  // loadUserInfo(store)
+  //   .then((user) => {
+  //     if (!user) replace('/login')
+  //     cb()
+  //   })
+  //   .catch(err) {
+  //   cb(err)
+  // }
+}
+
 export default (
   <Route path="/">
     <IndexRoute/>
@@ -14,6 +25,6 @@ export default (
       <Route path="login" component={Login} />
       <Route path=":id" component={UserInfo} />
     </Route>
-    <Route path="users" component={UserList} />
+    <Route path="users" component={UserList} onEnter={requireAuthentication} />
   </Route>
 )
