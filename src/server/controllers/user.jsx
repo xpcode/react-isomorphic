@@ -1,3 +1,6 @@
+import React from 'react'
+import Isomorph from '../../common/components/base/isomorph'
+
 export default router => {
 
   router.get('/', function* (next) {
