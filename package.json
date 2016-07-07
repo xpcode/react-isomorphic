@@ -2,7 +2,8 @@
   "name": "ucloud_ui",
   "version": "0.1.0",
   "description": "isomorphic web app for ucloud ui.",
-  "main": "index.js",
+  "repository": "git@github.com:xpcode/react-isomorphic.git",
+  "main": "bin/server/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "NODE_ENV=production node bin/server/index.js",
@@ -13,6 +14,18 @@
     "build:client": "BABEL_ENV=production; echo '开始编译：前端程序'; webpack --config webpack.prod.config.js --colors --progress; echo '结束编译：前端程序'",
     "build": "npm run build:server; npm run build:client"
   },
+  "keywords": [
+    "isomorphic",
+    "koa",
+    "react",
+    "react-router",
+    "redux",
+    "immutable",
+    "nodemon",
+    "webpack",
+    "babel",
+    "es6"
+  ],
   "author": "C. <4019980@qq.com> (https://github.com/xpcode)",
   "license": "ISC",
   "dependencies": {
