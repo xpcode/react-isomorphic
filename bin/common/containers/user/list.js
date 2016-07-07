@@ -10,6 +10,8 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRedux = require('react-redux');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -24,10 +26,15 @@ var UserList = function (_React$Component) {
   function UserList() {
     _classCallCheck(this, UserList);
 
-    return _possibleConstructorReturn(this, Object.getPrototypeOf(UserList).call(this));
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(UserList).apply(this, arguments));
   }
 
   _createClass(UserList, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      // this.constructor.fetchUsers()
+    }
+  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
@@ -46,3 +53,12 @@ var UserList = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = UserList;
+
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  return {
+    user: state.user
+  };
+};
+
+module.exports = (0, _reactRedux.connect)(mapStateToProps)(UserList);

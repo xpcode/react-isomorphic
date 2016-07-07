@@ -14,6 +14,17 @@ var _containers = require('../containers');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var requireAuthentication = function requireAuthentication(nextState, replace, cb) {
+  // loadUserInfo(store)
+  //   .then((user) => {
+  //     if (!user) replace('/login')
+  //     cb()
+  //   })
+  //   .catch(err) {
+  //   cb(err)
+  // }
+};
+
 exports.default = _react2.default.createElement(
   _reactRouter.Route,
   { path: '/' },
@@ -24,5 +35,5 @@ exports.default = _react2.default.createElement(
     _react2.default.createElement(_reactRouter.Route, { path: 'login', component: _containers.Login }),
     _react2.default.createElement(_reactRouter.Route, { path: ':id', component: _containers.UserInfo })
   ),
-  _react2.default.createElement(_reactRouter.Route, { path: 'users', component: _containers.UserList })
+  _react2.default.createElement(_reactRouter.Route, { path: 'users', component: _containers.UserList, onEnter: requireAuthentication })
 );

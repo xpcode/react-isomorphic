@@ -6,7 +6,7 @@ module.exports = {
   output: {
     publicPath: 'http://localhost:3004/',
     path: path.join(__dirname, './static/'),
-    filename: 'scripts/bundle.js'
+    filename: 'scripts/bundle.min.js'
   },
   resolve: {
     extensions: ["", ".js", ".jsx"],

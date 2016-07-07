@@ -10,7 +10,7 @@ import {
   matchRoute,
 } from './middlewares'
 import router from './controllers'
-import routes from '../common/routes';
+import routes from '../common/routes'
 
 koa()
   .use(matchRoute(routes))

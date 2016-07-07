@@ -14,6 +14,12 @@ var _reactRouter = require('react-router');
 
 var _reactRedux = require('react-redux');
 
+var _reactRouterRedux = require('react-router-redux');
+
+var _configureStore = require('../../utils/configureStore');
+
+var _configureStore2 = _interopRequireDefault(_configureStore);
+
 var _routes = require('../../routes');
 
 var _routes2 = _interopRequireDefault(_routes);
@@ -45,7 +51,6 @@ var Isomorph = function (_React$Component) {
       var _props = this.props;
       var store = _props.store;
       var history = _props.history;
-      var initialState = _props.initialState;
 
 
       return _react2.default.createElement(
@@ -58,5 +63,13 @@ var Isomorph = function (_React$Component) {
 
   return Isomorph;
 }(_react2.default.Component);
+
+Isomorph.store = function (initialState) {
+  return (0, _configureStore2.default)(initialState);
+};
+
+Isomorph.history = function (store, path) {
+  return _platform2.default.isBrowser ? (0, _reactRouterRedux.syncHistoryWithStore)(_reactRouter.browserHistory, store) : (0, _reactRouter.createMemoryHistory)(path);
+};
 
 exports.default = Isomorph;

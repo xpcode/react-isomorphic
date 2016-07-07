@@ -1,3 +1,7 @@
+import env from '../../../../env'
+
+const baseUrl = process.env.NODE_ENV !== 'production' ? env.SCRIPT_BASEURL_DEV : SCRIPT_BASEURL_PROD
+
 export default function html(pageInfo, content, state) {
   return `
       <html>
@@ -17,7 +21,7 @@ export default function html(pageInfo, content, state) {
           <script>
             window.__INITIAL_STATE__ = ${JSON.stringify(state)}
           </script>
-          <script src="http://localhost:3004/scripts/bundle.js"></script>
+          <script src="${baseUrl}/scripts/bundle.min.js"></script>
         </body>
       </html>
     `
