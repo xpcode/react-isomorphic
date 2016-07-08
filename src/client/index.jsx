@@ -5,6 +5,8 @@ import { match } from 'react-router'
 import Isomorph from '../common/components/base/isomorph'
 import routes from '../common/routes'
 
+import './styles/default/login.less'
+
 const store = Isomorph.createStore(window.__INITIAL_STATE__)
 const history = Isomorph.createHistory(store)
 

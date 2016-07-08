@@ -1,5 +1,7 @@
 var path = require('path')
 var webpack = require('webpack')
+var autoprefixer = require('autoprefixer')
+var ExtractTextPlugin = require("extract-text-webpack-plugin")
 
 module.exports = {
   entry: './src/client/index.jsx',
@@ -31,21 +33,27 @@ module.exports = {
       includes: ['common', 'client']
     }, {
         test: /\.(jpg|png|gif)$/,
-        loader: 'url',
+        loader: 'url?limit=8192',
       }, {
         test: /\.(less)$/,
-        loaders: ['style', 'css', 'less'],
+        loaders: ExtractTextPlugin.extract("style-loader", "css-loader", "less-loader"),
       }, {
         test: /\.(css)$/,
-        loaders: ['style', 'css'],
+        loaders: ExtractTextPlugin.extract("style-loader", "css-loader"),
       }]
   },
+  postcss: [
+    autoprefixer({
+      browsers: ['last 2 versions']
+    })
+  ],
   plugins: [
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': '"development"'
     }),
     new webpack.NoErrorsPlugin(),
     new webpack.HotModuleReplacementPlugin(),
+    new ExtractTextPlugin("styles/default/index.css"),
   ],
   devServer: {
     headers: {
