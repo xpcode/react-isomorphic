@@ -5,8 +5,8 @@ import { match } from 'react-router'
 import Isomorph from '../common/components/base/isomorph'
 import routes from '../common/routes'
 
-const store = Isomorph.store(window.__INITIAL_STATE__)
-const history = Isomorph.history(store)
+const store = Isomorph.createStore(window.__INITIAL_STATE__)
+const history = Isomorph.createHistory(store)
 
 const rootElement = document.getElementById('container')
 const { pathname, search, hash } = window.location;
