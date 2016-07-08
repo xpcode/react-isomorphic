@@ -13,3 +13,5 @@ build
 
 # OS files
 .DS_STORE
+
+.js.map
