@@ -8,8 +8,8 @@ export default router => {
   })
 
   router.get('/user/login', function (ctx) {
-    const store = Isomorph.store()
-    const history = Isomorph.history(store, ctx.path)
+    const store = Isomorph.createStore()
+    const history = Isomorph.createHistory(store, ctx.path)
     const pageInfo = {
       title: '用户登录',
       keyword: '',
