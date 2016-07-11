@@ -1,6 +1,6 @@
 const isBrowser = (
   typeof window !== 'undefined' &&
-  typeof global === 'object'
+  typeof global === 'undefined'
 )
 const isServer = !isBrowser
 

@@ -3,10 +3,6 @@ import Isomorph from '../../common/components/base/isomorph'
 
 export default router => {
 
-  router.get('/', function (next) {
-
-  })
-
   router.get('/user/login', function (ctx) {
     const store = Isomorph.createStore()
     const history = Isomorph.createHistory(store, ctx.path)
