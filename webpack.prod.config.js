@@ -1,11 +1,12 @@
 var path = require('path')
 var webpack = require('webpack')
+var ExtractTextPlugin = require("extract-text-webpack-plugin")
 
 module.exports = {
   entry: './src/client/index.jsx',
   output: {
-    path: path.join(__dirname, './static/'),
-    filename: 'scripts/bundle.min.js'
+    path: path.join(__dirname, './'),
+    filename: 'static/scripts/index.min.js'
   },
   resolve: {
     extensions: ["", ".js", ".jsx"],
@@ -34,10 +35,10 @@ module.exports = {
         loader: 'url',
       }, {
         test: /\.(less)$/,
-        loaders: ['style', 'css', 'less'],
+        loader: ExtractTextPlugin.extract("style-loader", "css-loader", "less-loader"),
       }, {
         test: /\.(css)$/,
-        loaders: ['style', 'css'],
+        loader: ExtractTextPlugin.extract("style-loader", "css-loader"),
       }]
   },
   plugins: [
@@ -46,6 +47,6 @@ module.exports = {
     }),
     new webpack.NoErrorsPlugin(),
     new webpack.optimize.UglifyJsPlugin(),
+    new ExtractTextPlugin("static/styles/default/index.css"),
   ],
-  devtool: 'source-map',
 }

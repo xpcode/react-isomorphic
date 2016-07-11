@@ -1,6 +1,6 @@
 import env from '../../../../env'
 
-const baseUrl = process.env.NODE_ENV !== 'production' ? env.SCRIPT_BASEURL_DEV : SCRIPT_BASEURL_PROD
+const baseUrl = process.env.NODE_ENV !== 'production' ? env.SCRIPT_BASEURL_DEV : env.SCRIPT_BASEURL_PROD
 
 export default function html(pageInfo, content, state) {
   return `
@@ -11,8 +11,8 @@ export default function html(pageInfo, content, state) {
           <meta name="description" content=${pageInfo.description}/>
           <meta name="keyword" content=${pageInfo.keyword}/>
           <meta httpEquiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-          <link href="${baseUrl}/styles/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-          <link href="${baseUrl}/styles/default/index.css" rel="stylesheet" type="text/css" />
+          <link href="${baseUrl}/static/styles/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+          <link href="${baseUrl}/static/styles/default/index.css" rel="stylesheet" type="text/css" />
         </head>
         <body>
           <div id="container">
@@ -21,7 +21,7 @@ export default function html(pageInfo, content, state) {
           <script>
             window.__INITIAL_STATE__ = ${JSON.stringify(state)}
           </script>
-          <script src="${baseUrl}/scripts/bundle.min.js"></script>
+          <script src="${baseUrl}/static/scripts/index.min.js"></script>
         </body>
       </html>
     `

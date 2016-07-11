@@ -14,7 +14,7 @@ new Koa()
   .use(matchRoute(routes))
   .use(router.routes())
   .use(router.allowedMethods())
-  .use(serve(path.join(__dirname, '../../static')))
+  .use(serve(path.join(process.cwd(), 'static')))
   .listen(3003)
 
 console.log('listening on port 3003 --', process.env.NODE_ENV)

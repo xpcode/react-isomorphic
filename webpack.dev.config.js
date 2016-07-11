@@ -7,8 +7,8 @@ module.exports = {
   entry: './src/client/index.jsx',
   output: {
     publicPath: 'http://localhost:3004/',
-    path: path.join(__dirname, './static/'),
-    filename: 'scripts/bundle.min.js'
+    path: path.join(__dirname, './'),
+    filename: 'static/scripts/index.min.js'
   },
   resolve: {
     extensions: ["", ".js", ".jsx"],
@@ -36,10 +36,10 @@ module.exports = {
         loader: 'url?limit=8192',
       }, {
         test: /\.(less)$/,
-        loaders: ExtractTextPlugin.extract("style-loader", "css-loader", "less-loader"),
+        loader: ExtractTextPlugin.extract("style-loader", "css-loader", "less-loader"),
       }, {
         test: /\.(css)$/,
-        loaders: ExtractTextPlugin.extract("style-loader", "css-loader"),
+        loader: ExtractTextPlugin.extract("style-loader", "css-loader"),
       }]
   },
   postcss: [
@@ -53,7 +53,7 @@ module.exports = {
     }),
     new webpack.NoErrorsPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new ExtractTextPlugin("styles/default/index.css"),
+    new ExtractTextPlugin("static/styles/default/index.css"),
   ],
   devServer: {
     headers: {
