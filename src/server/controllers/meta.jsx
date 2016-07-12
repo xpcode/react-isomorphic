@@ -3,7 +3,7 @@ import Isomorph from '../../common/components/base/isomorph'
 
 export default router => {
 
-  router.get('/user/login', function (ctx) {
+  router.get('/meta/:metaId', function (ctx) {
     const store = Isomorph.createStore()
     const history = Isomorph.createHistory(store, ctx.path)
     const pageInfo = {

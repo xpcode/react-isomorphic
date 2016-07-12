@@ -5,6 +5,7 @@ import {
   Login,
   UserInfo,
   UserList,
+  MetaPage,
 } from '../containers'
 
 const requireAuthentication = (nextState, replace, cb) => {
@@ -21,6 +22,9 @@ const requireAuthentication = (nextState, replace, cb) => {
 export default (
   <Route path="/">
     <IndexRoute/>
+    <Route path="meta">
+      <Route path=":metaId" component={MetaPage} />
+    </Route>
     <Route path="user">
       <Route path="login" component={Login} />
       <Route path=":id" component={UserInfo} />

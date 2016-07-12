@@ -1,4 +1,4 @@
-import { match } from 'react-router'
+var match = require('react-router').match
 
 export default (routes) => {
   return async function (ctx, next) {
