@@ -7,7 +7,7 @@ import configureStore from '../../utils/configureStore'
 import routes from '../../routes'
 import platform from '../../utils/platform'
 
-export default class Isomorph extends React.Component {
+class Isomorph extends React.Component {
   static createStore = initialState => configureStore(initialState);
 
   static createHistory = (store, path) => platform.isBrowser ? syncHistoryWithStore(browserHistory, store) : createMemoryHistory(path);
@@ -25,3 +25,5 @@ export default class Isomorph extends React.Component {
     )
   }
 }
+
+module.exports = Isomorph

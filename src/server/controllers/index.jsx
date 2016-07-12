@@ -1,15 +1,14 @@
-import React from 'react'
-import Router from 'koa-router'
-import Isomorph from '../../common/components/base/isomorph'
+var React = require('react')
+var Router = require('koa-router')
+var Isomorph = require('../../common/components/base/isomorph')
 
-const router = Router()
-export default router
+const router = module.exports = Router()
 
 
-import user from './user'
+var user = require('./user')
 user(router)
 
-import meta from './meta'
+var meta = require('./meta')
 meta(router)
 
 // TODO: 增加其他模块的路由，如：

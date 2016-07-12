@@ -1,13 +1,10 @@
-import Koa from 'koa'
-import serve from 'koa-static'
-import path from 'path'
-
-import {
-  viewhook,
-  matchRoute,
-} from './middlewares'
-import router from './controllers'
-import routes from '../common/routes'
+var Koa = require('koa')
+var serve = require('koa-static')
+var path = require('path')
+var viewhook = require('./middlewares/viewhook')
+var matchRoute = require('./middlewares/matchRoute')
+var router = require('./controllers')
+var routes = require('../common/routes')
 
 new Koa()
   .use(viewhook())

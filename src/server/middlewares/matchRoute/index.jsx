@@ -1,6 +1,6 @@
 var match = require('react-router').match
 
-export default (routes) => {
+module.exports = (routes) => {
   return async function (ctx, next) {
     match({
       routes,

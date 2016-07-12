@@ -1,7 +1,7 @@
-import React from 'react'
-import Isomorph from '../../common/components/base/isomorph'
+var React = require('react')
+var Isomorph = require('../../common/components/base/isomorph')
 
-export default router => {
+module.exports = router => {
 
   router.get('/user/login', function (ctx) {
     const store = Isomorph.createStore()

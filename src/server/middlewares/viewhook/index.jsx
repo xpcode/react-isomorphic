@@ -1,9 +1,9 @@
-import React from 'react'
-import ReactDOMServer from 'react-dom/server'
-import beautify from 'js-beautify'
-import html from './html'
+var React = require('react')
+var ReactDOMServer = require('react-dom/server')
+var beautify = require('js-beautify')
+var html = require('./html')
 
-export default function viewhook(_options = { beautify: true, internals: true }) {
+module.exports = function viewhook(_options = { beautify: true, internals: true }) {
   const options = Object.assign({}, _options)
 
   return async function (ctx, next) {
