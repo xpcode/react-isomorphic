@@ -1,6 +1,9 @@
-import env from '../../../../env'
+var path = require('path')
+var env = require(path.join(process.cwd(), 'env'))
 
-const baseUrl = process.env.NODE_ENV !== 'production' ? env.SCRIPT_BASEURL_DEV : env.SCRIPT_BASEURL_PROD
+const baseUrl = process.env.NODE_ENV !== 'production' ?
+  env.SCRIPT_BASEURL_DEV :
+  env.SCRIPT_BASEURL_PROD
 
 export default function html(pageInfo, content, state) {
   return `

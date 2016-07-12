@@ -9,6 +9,9 @@ export default router
 import user from './user'
 user(router)
 
+import meta from './meta'
+meta(router)
+
 // TODO: 增加其他模块的路由，如：
 // import report from './report'
 // report(router)
