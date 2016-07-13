@@ -1,8 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import platform from '../../utils/platform'
-
 class Login extends React.Component {
   constructor() {
     super()
@@ -15,10 +13,6 @@ class Login extends React.Component {
   }
 
   render() {
-    if (platform.isBrowser === true) {
-      console.log('未解决：浏览器重新渲染的问题')
-    }
-
     const { user } = this.props
 
     if (user.loginStatus === 1) {

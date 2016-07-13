@@ -1,10 +1,10 @@
-var Koa = require('koa')
-var serve = require('koa-static')
-var path = require('path')
-var viewhook = require('./middlewares/viewhook')
-var matchRoute = require('./middlewares/matchRoute')
-var router = require('./controllers')
-var routes = require('../common/redux/routes')
+import Koa from 'koa'
+import serve from 'koa-static'
+import path from 'path'
+import viewhook from './middlewares/viewhook'
+import matchRoute from './middlewares/matchRoute'
+import router from './controllers'
+import routes from '../common/redux/routes'
 
 new Koa()
   .use(viewhook())
@@ -14,4 +14,4 @@ new Koa()
   .use(serve(path.join(process.cwd(), 'static')))
   .listen(3003)
 
-console.log('listening on port 3003 --', process.env.NODE_ENV)
+console.log('listening on port 3003 --', process.env.NODE_ENV, process.env.__SERVER__, process.env.__CLIENT__)

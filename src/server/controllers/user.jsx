@@ -1,5 +1,4 @@
-var React = require('react')
-var Isomorph = require('../../common/components/base/isomorph')
+import React from 'react'
 
 module.exports = router => {
 

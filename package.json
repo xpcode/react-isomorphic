@@ -6,10 +6,10 @@
   "main": "bin/server/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "NODE_ENV=production node bin/server/index.js",
+    "start": "NODE_ENV=production __SERVER__=true __CLIENT__=false node bin/server/index.js",
     "install": "",
     "debug:client": "webpack-dev-server --progress --colors --display-error-details --display-modules --config webpack.dev.config.js",
-    "debug:server": "NODE_ENV=development nodemon -w src/server -w src/common --exec babel-node --debug src/server/app.jsx",
+    "debug:server": "NODE_ENV=development __SERVER__=true __CLIENT__=false nodemon -w src/server -w src/common --exec babel-node --debug src/server/app.jsx",
     "build:server": "BABEL_ENV=production; echo '开始编译：后端程序'; babel src -d bin --ignore client; echo '结束编译：后端程序'",
     "build:client": "BABEL_ENV=production; echo '开始编译：前端程序'; webpack --config webpack.prod.config.js --colors --progress; echo '结束编译：前端程序'",
     "build": "npm run build:server; npm run build:client"

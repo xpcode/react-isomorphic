@@ -5,14 +5,17 @@ import { syncHistoryWithStore } from 'react-router-redux'
 
 import configureStore from '../../redux/configureStore'
 import routes from '../../redux/routes'
-import platform from '../../utils/platform'
 
 class Isomorph extends React.Component {
   static createStore = initialState => configureStore(initialState);
 
-  static createHistory = (store, path) => platform.isBrowser ? syncHistoryWithStore(browserHistory, store) : createMemoryHistory(path);
+  static createHistory = (store, path) => process.env.__CLIENT__ === true ? syncHistoryWithStore(browserHistory, store) : createMemoryHistory(path);
 
   render() {
+    if (process.env.__CLIENT__ === true) {
+      console.log('未解决：浏览器重新渲染的问题')
+    }
+
     const {
       store,
       history,

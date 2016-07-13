@@ -1,6 +1,5 @@
-var React = require('react')
-var Router = require('koa-router')
-var Isomorph = require('../../common/components/base/isomorph')
+import React from 'react'
+import Router from 'koa-router'
 
 const router = module.exports = Router()
 
@@ -17,8 +16,6 @@ meta(router)
 
 
 router.get('/', function (ctx) {
-  const store = Isomorph.createStore()
-  const history = Isomorph.createHistory(store, ctx.path)
   const pageInfo = {
     title: '用户登录',
     keyword: '',
@@ -28,5 +25,5 @@ router.get('/', function (ctx) {
   // TODO: 调用 dispatch，store 会得到数据
   // store.dispatch({type: ACTION_USER_GET_LIST})
 
-  ctx.render(<Isomorph store={store} history={history}/>, pageInfo)
+  ctx.render(pageInfo)
 })

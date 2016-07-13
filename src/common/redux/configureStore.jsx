@@ -4,13 +4,12 @@ import thunk from 'redux-thunk'
 import createLogger from 'redux-logger'
 import Immutable from 'immutable'
 
-import platform from '../utils/platform'
 import rootReducer from './reducers'
 
 export default function configureStore(initialState) {
   const middlewares = [thunk]
 
-  if (platform.isBrowser === true) {
+  if (process.env.__CLIENT__ === true) {
     const stateTransformer = states => {
       let finalStates = {}
       for (let key in states) {
@@ -45,7 +44,7 @@ export default function configureStore(initialState) {
   const store = createStore(rootReducer, initialState, compose(
     applyMiddleware(...middlewares),
     (
-      platform.isBrowser === true && window.devToolsExtension ? window.devToolsExtension() : f => f
+      process.env.__CLIENT__ === true && window.devToolsExtension ? window.devToolsExtension() : f => f
     )
   ))
 
