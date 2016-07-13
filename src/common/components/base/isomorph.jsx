@@ -3,8 +3,8 @@ import { Router, Route, IndexRoute, createMemoryHistory, browserHistory, match }
 import { Provider } from 'react-redux'
 import { syncHistoryWithStore } from 'react-router-redux'
 
-import configureStore from '../../utils/configureStore'
-import routes from '../../routes'
+import configureStore from '../../redux/configureStore'
+import routes from '../../redux/routes'
 import platform from '../../utils/platform'
 
 class Isomorph extends React.Component {

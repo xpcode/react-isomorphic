@@ -4,8 +4,8 @@ import thunk from 'redux-thunk'
 import createLogger from 'redux-logger'
 import Immutable from 'immutable'
 
-import platform from './platform'
-import rootReducer from '../reducers'
+import platform from '../utils/platform'
+import rootReducer from './reducers'
 
 export default function configureStore(initialState) {
   const middlewares = [thunk]

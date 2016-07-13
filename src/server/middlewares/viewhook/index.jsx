@@ -1,31 +1,29 @@
-var React = require('react')
-var ReactDOMServer = require('react-dom/server')
-var beautify = require('js-beautify')
-var html = require('./html')
+import React from 'react'
+import ReactDOMServer from 'react-dom/server'
+import beautify from 'js-beautify'
+import html from './html'
+import Isomorph from '../../../common/components/base/isomorph'
 
 module.exports = function viewhook(_options = { beautify: true, internals: true }) {
   const options = Object.assign({}, _options)
 
   return async function (ctx, next) {
-    ctx.render = function (component, pageInfo, internals = options.internals || true) {
-      if (!React.isValidElement(component)) {
-        const err = new Error('参数错误：请传入 ReactComponent 对象')
-        err.code = 'REACT'
-        throw err;
-      }
+    ctx.__store = Isomorph.createStore()
+    ctx.__history = Isomorph.createHistory(ctx.__store, ctx.path)
 
+    ctx.render = function (pageInfo, internals = options.internals || true) {
       const render = internals
         ? ReactDOMServer.renderToString
         : ReactDOMServer.renderToStaticMarkup
 
-      let markup = render(component)
+      let markup = render(<Isomorph store={ctx.__store} history={ctx.__history}/>)
 
       if (options.beautify) {
         markup = beautify.html(markup)
       }
 
       ctx.type = 'html';
-      ctx.body = html(pageInfo, markup, component.props.store.getState())
+      ctx.body = html(pageInfo, markup, ctx.__store.getState())
     }
 
     await next()

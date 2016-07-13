@@ -3,7 +3,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { match } from 'react-router'
 import Isomorph from '../common/components/base/isomorph'
-import routes from '../common/routes'
+import routes from '../common/redux/routes'
 
 import './styles/default/login.less'
 

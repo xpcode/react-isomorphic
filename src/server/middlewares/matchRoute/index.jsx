@@ -2,26 +2,23 @@ var match = require('react-router').match
 
 module.exports = (routes) => {
   return async function (ctx, next) {
-    match({
-      routes,
-      location: ctx.req.url
-    },
-      (error, redirectLocation, renderProps) => {
-        if (redirectLocation) {
-          ctx.res.redirect(redirectLocation.pathname + redirectLocation.search)
 
-        } else if (error) {
-          console.error('ROUTER ERROR:', error)
-          ctx.res.status(500)
-          ctx.body = '500'
+    match({ routes, location: ctx.req.url }, (error, redirectLocation, renderProps) => {
+      if (redirectLocation) {
+        ctx.res.redirect(redirectLocation.pathname + redirectLocation.search)
 
-        } else if (renderProps) {
-          // 交给后端 controller 处理
+      } else if (error) {
+        console.error('ROUTER ERROR:', error)
+        ctx.res.status(500)
+        ctx.body = '500'
 
-        } else {
-          ctx.body = "404";
-        }
-      })
+      } else if (renderProps) {
+        // 交给后端 controller 处理
+
+      } else {
+        ctx.body = "404";
+      }
+    })
 
     await next()
   }

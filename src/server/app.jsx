@@ -4,7 +4,7 @@ var path = require('path')
 var viewhook = require('./middlewares/viewhook')
 var matchRoute = require('./middlewares/matchRoute')
 var router = require('./controllers')
-var routes = require('../common/routes')
+var routes = require('../common/redux/routes')
 
 new Koa()
   .use(viewhook())

@@ -1,19 +1,27 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { fetchMetadata } from '../../redux/modules/meta';
 
-export default class IndexPage extends React.Component {
-  // static fetchMetadata(){
-  //   console.log(2)
-  //   };
-
+class IndexPage extends React.Component {
   render() {
     return (
-      <div>1
+      <div>11111111111
       </div>
     )
   }
 
   componentDidMount() {
-    // this.constructor.fetchMetadata();
+    this.props.fetchMetadata()
   }
 
 }
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    meta: state.meta
+  }
+}
+
+module.exports = connect(mapStateToProps, {
+  fetchMetadata,
+})(IndexPage)
