@@ -1,6 +1,6 @@
 import { match } from 'react-router'
 
-module.exports = (routes) => {
+export default function (routes) {
   return async function (ctx, next) {
 
     match({ routes, location: ctx.req.url }, (error, redirectLocation, renderProps) => {

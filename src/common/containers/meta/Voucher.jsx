@@ -6,7 +6,7 @@ import { fetchMetadata } from '../../redux/modules/meta';
 import View from '../../components/meta/View'
 import ViewModel from '../../components/meta/ViewModel'
 
-class IndexPage extends React.Component {
+class Voucher extends React.Component {
   render() {
     const {
       viewApplication,
@@ -32,6 +32,6 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-module.exports = connect(mapStateToProps, {
+export default connect(mapStateToProps, {
   fetchMetadata,
-})(IndexPage)
+})(Voucher)

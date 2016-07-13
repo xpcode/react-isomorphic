@@ -4,25 +4,19 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouter = require('react-router');
+var _lodash = require('lodash');
 
-var _reactRedux = require('react-redux');
+var _Control = require('./Control');
 
-var _reactRouterRedux = require('react-router-redux');
-
-var _configureStore = require('../../redux/configureStore');
-
-var _configureStore2 = _interopRequireDefault(_configureStore);
-
-var _routes = require('../../redux/routes');
-
-var _routes2 = _interopRequireDefault(_routes);
+var _Control2 = _interopRequireDefault(_Control);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -32,44 +26,58 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Isomorph = function (_React$Component) {
-  _inherits(Isomorph, _React$Component);
+var View = function (_Component) {
+  _inherits(View, _Component);
 
-  function Isomorph() {
-    _classCallCheck(this, Isomorph);
+  function View() {
+    _classCallCheck(this, View);
 
-    return _possibleConstructorReturn(this, Object.getPrototypeOf(Isomorph).apply(this, arguments));
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(View).apply(this, arguments));
   }
 
-  _createClass(Isomorph, [{
+  _createClass(View, [{
     key: 'render',
     value: function render() {
-      if (process.env.__CLIENT__ === true) {
-        console.log('未解决：浏览器重新渲染的问题');
+      var _props = this.props;
+      var cTplGroupName = _props.cTplGroupName;
+      var iOrder = _props.iOrder;
+      var bMain = _props.bMain;
+      var cGroupControlType = _props.cGroupControlType;
+      var controls = _props.controls;
+      var containers = _props.containers;
+
+
+      var renderString = null;
+
+      if (containers.length > 0) {
+        renderString = containers.map(function (item, i) {
+          return _react2.default.createElement(View, _extends({}, item, { key: 'view_' + i }));
+        });
+      } else if (cGroupControlType === 'TabPage') {
+        renderString = controls.map(function (item, i) {
+          return _react2.default.createElement(_Control2.default, _extends({}, item, { key: 'control_' + i }));
+        });
       }
 
-      var _props = this.props;
-      var store = _props.store;
-      var history = _props.history;
-
-
       return _react2.default.createElement(
-        _reactRedux.Provider,
-        { store: store },
-        _react2.default.createElement(_reactRouter.Router, { history: history, routes: _routes2.default })
+        'div',
+        null,
+        renderString
       );
     }
   }]);
 
-  return Isomorph;
-}(_react2.default.Component);
+  return View;
+}(_react.Component);
 
-Isomorph.createStore = function (initialState) {
-  return (0, _configureStore2.default)(initialState);
+View.propTypes = {
+  type: _react.PropTypes.string.isRequired,
+  name: _react.PropTypes.string,
+  containers: _react.PropTypes.array,
+  controls: _react.PropTypes.array
 };
-
-Isomorph.createHistory = function (store, path) {
-  return process.env.__CLIENT__ === true ? (0, _reactRouterRedux.syncHistoryWithStore)(_reactRouter.browserHistory, store) : (0, _reactRouter.createMemoryHistory)(path);
+View.defaultProps = {
+  containers: [],
+  controls: []
 };
-
-exports.default = Isomorph;
+exports.default = View;

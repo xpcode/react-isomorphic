@@ -21,6 +21,8 @@ var _html = require('./html');
 
 var _html2 = _interopRequireDefault(_html);
 
+var _components = require('../../../common/components');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { return step("next", value); }, function (err) { return step("throw", err); }); } } return step("next"); }); }; }
@@ -36,31 +38,28 @@ function viewhook() {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              ctx.render = function (component, pageInfo) {
-                var internals = arguments.length <= 2 || arguments[2] === undefined ? options.internals || true : arguments[2];
+              ctx.store = _components.BaseIsomorph.createStore();
+              ctx.history = _components.BaseIsomorph.createHistory(ctx.store, ctx.path);
 
-                if (!_react2.default.isValidElement(component)) {
-                  var err = new Error('参数错误：请传入 ReactComponent 对象');
-                  err.code = 'REACT';
-                  throw err;
-                }
+              ctx.render = function (pageInfo) {
+                var internals = arguments.length <= 1 || arguments[1] === undefined ? options.internals || true : arguments[1];
 
                 var render = internals ? _server2.default.renderToString : _server2.default.renderToStaticMarkup;
 
-                var markup = render(component);
+                var markup = render(_react2.default.createElement(_components.BaseIsomorph, { store: ctx.store, history: ctx.history }));
 
                 if (options.beautify) {
                   markup = _jsBeautify2.default.html(markup);
                 }
 
                 ctx.type = 'html';
-                ctx.body = (0, _html2.default)(pageInfo, markup, component.props.store.getState());
+                ctx.body = (0, _html2.default)(pageInfo, markup, ctx.store.getState());
               };
 
-              _context.next = 3;
+              _context.next = 5;
               return next();
 
-            case 3:
+            case 5:
             case 'end':
               return _context.stop();
           }

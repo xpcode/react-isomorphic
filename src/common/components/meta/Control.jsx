@@ -31,7 +31,7 @@ export default class Control extends Component {
       id,
       iParentId,
     } = this.props
-    console.log(this.props)
+    // console.log(this.props)
 
     if (cControlType === 'Button') {
       return <Button onClick={e => handleClick(e, entity) }>{title}</Button>

@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom'
 import Immutable from 'immutable'
 import { match } from 'react-router'
 
-import Isomorph from '../common/components/base/isomorph'
+import { BaseIsomorph } from '../common/components'
 import routes from '../common/redux/routes'
 
 import './styles/default/login.less'
@@ -22,8 +22,8 @@ if (reducers) {
   }
 }
 
-const store = Isomorph.createStore(finalState)
-const history = Isomorph.createHistory(store)
+const store = BaseIsomorph.createStore(finalState)
+const history = BaseIsomorph.createHistory(store)
 
 const rootElement = document.getElementById('container')
 const { pathname, search, hash } = window.location
@@ -35,7 +35,7 @@ console.log('未解决：动态路由的前后端配置')
 
 match({ routes, location }, (error, redirectLocation, renderProps) => {
   ReactDOM.render(
-    <Isomorph store={store} history={history}/>,
+    <BaseIsomorph store={store} history={history}/>,
     rootElement
   )
 })

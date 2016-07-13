@@ -82,4 +82,4 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-module.exports = connect(mapStateToProps)(Login)
+export default connect(mapStateToProps)(Login)

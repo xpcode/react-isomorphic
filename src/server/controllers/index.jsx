@@ -1,13 +1,14 @@
 import React from 'react'
 import Router from 'koa-router'
 
-const router = module.exports = Router()
+const router = Router()
+export default router
 
 
-var user = require('./user')
+import user from './user'
 user(router)
 
-var meta = require('./meta')
+import meta from './meta'
 meta(router)
 
 // TODO: 增加其他模块的路由，如：

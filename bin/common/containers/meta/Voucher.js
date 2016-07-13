@@ -4,25 +4,27 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouter = require('react-router');
-
 var _reactRedux = require('react-redux');
 
-var _reactRouterRedux = require('react-router-redux');
+var _lodash = require('lodash');
 
-var _configureStore = require('../../redux/configureStore');
+var _meta = require('../../redux/modules/meta');
 
-var _configureStore2 = _interopRequireDefault(_configureStore);
+var _View = require('../../components/meta/View');
 
-var _routes = require('../../redux/routes');
+var _View2 = _interopRequireDefault(_View);
 
-var _routes2 = _interopRequireDefault(_routes);
+var _ViewModel = require('../../components/meta/ViewModel');
+
+var _ViewModel2 = _interopRequireDefault(_ViewModel);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -32,44 +34,46 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Isomorph = function (_React$Component) {
-  _inherits(Isomorph, _React$Component);
+var Voucher = function (_React$Component) {
+  _inherits(Voucher, _React$Component);
 
-  function Isomorph() {
-    _classCallCheck(this, Isomorph);
+  function Voucher() {
+    _classCallCheck(this, Voucher);
 
-    return _possibleConstructorReturn(this, Object.getPrototypeOf(Isomorph).apply(this, arguments));
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(Voucher).apply(this, arguments));
   }
 
-  _createClass(Isomorph, [{
+  _createClass(Voucher, [{
     key: 'render',
     value: function render() {
-      if (process.env.__CLIENT__ === true) {
-        console.log('未解决：浏览器重新渲染的问题');
-      }
-
-      var _props = this.props;
-      var store = _props.store;
-      var history = _props.history;
+      var _props$meta = this.props.meta;
+      var viewApplication = _props$meta.viewApplication;
+      var viewmodel = _props$meta.viewmodel;
 
 
       return _react2.default.createElement(
-        _reactRedux.Provider,
-        { store: store },
-        _react2.default.createElement(_reactRouter.Router, { history: history, routes: _routes2.default })
+        'div',
+        null,
+        _react2.default.createElement(_View2.default, _extends({}, viewApplication.view, { key: 'view_root' })),
+        _react2.default.createElement(_ViewModel2.default, _extends({}, viewmodel, { key: 'viewmodel_root' }))
       );
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      // this.props.fetchMetadata()
     }
   }]);
 
-  return Isomorph;
+  return Voucher;
 }(_react2.default.Component);
 
-Isomorph.createStore = function (initialState) {
-  return (0, _configureStore2.default)(initialState);
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  return {
+    meta: state.meta.toJS()
+  };
 };
 
-Isomorph.createHistory = function (store, path) {
-  return process.env.__CLIENT__ === true ? (0, _reactRouterRedux.syncHistoryWithStore)(_reactRouter.browserHistory, store) : (0, _reactRouter.createMemoryHistory)(path);
-};
-
-exports.default = Isomorph;
+exports.default = (0, _reactRedux.connect)(mapStateToProps, {
+  fetchMetadata: _meta.fetchMetadata
+})(Voucher);

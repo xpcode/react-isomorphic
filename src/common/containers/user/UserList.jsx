@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-export default class UserList extends React.Component {
+class UserList extends React.Component {
   componentDidMount() {
     // this.constructor.fetchUsers()
   }
@@ -21,4 +21,4 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-module.exports = connect(mapStateToProps)(UserList)
+export default connect(mapStateToProps)(UserList)

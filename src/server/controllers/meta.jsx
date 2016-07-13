@@ -4,7 +4,7 @@ import {
   fetchMetaData,
 } from '../../common/redux/modules/meta'
 
-module.exports = router => {
+export default function (router) {
 
   router.get('/meta/:metaId', function (ctx) {
     const metaId = ctx.params.metaId

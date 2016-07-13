@@ -10,19 +10,7 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouter = require('react-router');
-
-var _reactRedux = require('react-redux');
-
-var _reactRouterRedux = require('react-router-redux');
-
-var _configureStore = require('../../redux/configureStore');
-
-var _configureStore2 = _interopRequireDefault(_configureStore);
-
-var _routes = require('../../redux/routes');
-
-var _routes2 = _interopRequireDefault(_routes);
+var _lodash = require('lodash');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -32,44 +20,56 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Isomorph = function (_React$Component) {
-  _inherits(Isomorph, _React$Component);
+var ViewModel = function (_Component) {
+  _inherits(ViewModel, _Component);
 
-  function Isomorph() {
-    _classCallCheck(this, Isomorph);
+  function ViewModel() {
+    _classCallCheck(this, ViewModel);
 
-    return _possibleConstructorReturn(this, Object.getPrototypeOf(Isomorph).apply(this, arguments));
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(ViewModel).apply(this, arguments));
   }
 
-  _createClass(Isomorph, [{
+  _createClass(ViewModel, [{
+    key: 'generateScript',
+
+
+    // 生成 viewmodel.js
+    value: function generateScript(entities) {
+      var script = null;
+
+      if (process.env.NODE_ENV === 'production') {
+        // 生成 js 文件到 /static/viewmodel/**.js、压缩，返回文件绝对路径
+        // 确保只是首次生成
+      }
+      script = 'console.log("ouput viewmodel.js");';
+      return script;
+    }
+  }, {
     key: 'render',
     value: function render() {
-      if (process.env.__CLIENT__ === true) {
-        console.log('未解决：浏览器重新渲染的问题');
-      }
+      var entities = this.props.entities;
 
-      var _props = this.props;
-      var store = _props.store;
-      var history = _props.history;
 
+      var content = this.generateScript(entities);
+
+      var renderScript = (0, _lodash.isString)(content) ? _react2.default.createElement('script', { dangerouslySetInnerHTML: { __html: content } }) : _react2.default.createElement('script', { src: content });
 
       return _react2.default.createElement(
-        _reactRedux.Provider,
-        { store: store },
-        _react2.default.createElement(_reactRouter.Router, { history: history, routes: _routes2.default })
+        'div',
+        null,
+        _react2.default.createElement('script', { src: '/static/scripts/cube/0.1.0/cube.js' }),
+        renderScript
       );
     }
   }]);
 
-  return Isomorph;
-}(_react2.default.Component);
+  return ViewModel;
+}(_react.Component);
 
-Isomorph.createStore = function (initialState) {
-  return (0, _configureStore2.default)(initialState);
+ViewModel.propTypes = {
+  entities: _react.PropTypes.array
 };
-
-Isomorph.createHistory = function (store, path) {
-  return process.env.__CLIENT__ === true ? (0, _reactRouterRedux.syncHistoryWithStore)(_reactRouter.browserHistory, store) : (0, _reactRouter.createMemoryHistory)(path);
+ViewModel.defaultProps = {
+  entities: []
 };
-
-exports.default = Isomorph;
+exports.default = ViewModel;

@@ -6,7 +6,7 @@ import { syncHistoryWithStore } from 'react-router-redux'
 import configureStore from '../../redux/configureStore'
 import routes from '../../redux/routes'
 
-class Isomorph extends React.Component {
+export default class Isomorph extends React.Component {
   static createStore = initialState => configureStore(initialState);
 
   static createHistory = (store, path) => process.env.__CLIENT__ === true ? syncHistoryWithStore(browserHistory, store) : createMemoryHistory(path);
@@ -28,5 +28,3 @@ class Isomorph extends React.Component {
     )
   }
 }
-
-module.exports = Isomorph

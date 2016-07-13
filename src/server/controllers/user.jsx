@@ -1,6 +1,6 @@
 import React from 'react'
 
-module.exports = router => {
+export default function (router) {
 
   router.get('/user/login', function (ctx) {
     const pageInfo = {

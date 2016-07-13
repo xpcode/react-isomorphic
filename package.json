@@ -10,8 +10,8 @@
     "install": "",
     "debug:server": "BABEL_ENV=production NODE_ENV=development nodemon -w src/server -w src/common --exec babel-node --debug src/server/app.jsx",
     "debug:client": "BABEL_ENV=development webpack-dev-server --progress --colors --display-error-details --display-modules --config webpack.dev.config.js",
-    "build:server": "BABEL_ENV=production babel src -d bin --ignore client; echo '结束编译：后端程序'",
-    "build:client": "BABEL_ENV=production webpack --config webpack.prod.config.js --colors --progress; echo '结束编译：前端程序'",
+    "build:server": "BABEL_ENV=production babel src -d bin --ignore client; echo '后端程序：编译完成'",
+    "build:client": "BABEL_ENV=production webpack --config webpack.prod.config.js --colors --progress; echo '前端程序：编译完成'",
     "build": "npm run build:server; npm run build:client"
   },
   "keywords": [

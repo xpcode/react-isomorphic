@@ -5,7 +5,7 @@ const baseUrl = process.env.NODE_ENV !== 'production' ?
   env.SCRIPT_BASEURL_DEV :
   env.SCRIPT_BASEURL_PROD
 
-module.exports = function html(pageInfo, content, state) {
+export default function html(pageInfo, content, state) {
   return `
       <html>
         <head>

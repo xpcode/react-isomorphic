@@ -1,13 +1,5 @@
-import UserInfo from './user/info'
-import UserList from './user/list'
-import Login from './user/login'
-import MetaPage from './meta/IndexPage'
-import NotFound from './error/NotFound'
-
-export {
-  NotFound,
-  UserInfo,
-  UserList,
-  Login,
-  MetaPage,
-}
+export ErrorNotFound from './error/NotFound'
+export MetaIndexPage from './meta/Voucher'
+export UserInfoPage from './user/UserInfo'
+export UserListPage from './user/UserList'
+export UserLoginPage from './user/UserLogin'

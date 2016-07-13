@@ -18,13 +18,13 @@ export default (
   <Route path="/">
     <IndexRoute/>
     <Route path="meta">
-      <Route path=":metaId" component={Pages.MetaPage} />
+      <Route path=":metaId" component={Pages.MetaIndexPage} />
     </Route>
     <Route path="user">
-      <Route path="login" component={Pages.Login} />
-      <Route path=":id" component={Pages.UserInfo} />
+      <Route path="login" component={Pages.UserLoginPage} />
+      <Route path=":id" component={Pages.UserInfoPage} />
     </Route>
-    <Route path="users" component={Pages.UserList} onEnter={requireAuthentication} />
-    <Route path="*" component={Pages.NotFound} />
+    <Route path="users" component={Pages.UserListPage} onEnter={requireAuthentication} />
+    <Route path="*" component={Pages.ErrorNotFound} />
   </Route>
 )
