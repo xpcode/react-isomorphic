@@ -17,7 +17,7 @@ const location = `${pathname}${search}${hash}`
 
 // ReactDOM.unmountComponentAtNode(rootElement)
 
-console.log('未解决：动态路由的前后端配置', __SERVER__, __CLIENT__)
+console.log('未解决：动态路由的前后端配置')
 
 match({ routes, location }, (error, redirectLocation, renderProps) => {
   ReactDOM.render(

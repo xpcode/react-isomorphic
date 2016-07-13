@@ -1,5 +1,5 @@
-var path = require('path')
-var env = require(path.join(process.cwd(), 'env'))
+import path from 'path'
+import env from '../../../env'
 
 const baseUrl = process.env.NODE_ENV !== 'production' ?
   env.SCRIPT_BASEURL_DEV :

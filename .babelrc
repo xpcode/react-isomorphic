@@ -4,6 +4,11 @@
     "react",
     "stage-1"
   ],
-  "plugins": [
-  ]
+  "env": {
+    "development": {
+      "presets": [
+        "react-hmre"
+      ]
+    }
+  }
 }

@@ -23,13 +23,6 @@ module.exports = {
     loaders: [{
       test: /\.(js|jsx)$/,
       loader: 'babel',
-      query: {
-        "env": {
-          "development": {
-            "presets": ["react-hmre"]
-          }
-        },
-      },
       includes: ['common', 'client']
     }, {
         test: /\.(jpg|png|gif)$/,
@@ -50,8 +43,7 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': '"development"',
-      __CLIENT__: true,
-      __SERVER__: false,
+      'process.env.__CLIENT__': 'true',
     }),
     new webpack.NoErrorsPlugin(),
     new webpack.HotModuleReplacementPlugin(),
