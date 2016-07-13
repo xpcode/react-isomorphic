@@ -2,6 +2,7 @@ import "es6-promise"
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { match } from 'react-router'
+
 import Isomorph from '../common/components/base/isomorph'
 import routes from '../common/redux/routes'
 

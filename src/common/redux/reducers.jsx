@@ -6,6 +6,7 @@ import meta from './modules/meta'
 
 const rootReducer = combineReducers({
   user,
+  meta,
   routing,
 })
 

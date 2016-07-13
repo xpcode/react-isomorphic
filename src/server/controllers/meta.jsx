@@ -1,5 +1,8 @@
 import React from 'react'
-import { fetchMetaData } from '../../common/redux/modules/meta'
+import {
+  ACTION_FETCH_METADATA_SUCCESS,
+  fetchMetaData,
+} from '../../common/redux/modules/meta'
 
 module.exports = router => {
 
@@ -12,9 +15,15 @@ module.exports = router => {
       description: '',
     }
 
-    // TODO: 调用 dispatch，store 会得到数据
-    fetchMetaData(metaId)
-    // store.dispatch({type: ACTION_USER_GET_LIST})
+    const mock = require('../../data/viewmodel')
+
+    ctx.store.dispatch({
+      type: ACTION_FETCH_METADATA_SUCCESS,
+      payload: {
+        viewApplication: mock.data.viewApplication,
+        viewmodel: mock.data.viewmodel
+      }
+    })
 
     ctx.render(pageInfo)
   })
