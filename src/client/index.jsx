@@ -1,6 +1,7 @@
 import "es6-promise"
 import React from 'react'
 import ReactDOM from 'react-dom'
+import Immutable from 'immutable'
 import { match } from 'react-router'
 
 import Isomorph from '../common/components/base/isomorph'
@@ -8,7 +9,20 @@ import routes from '../common/redux/routes'
 
 import './styles/default/login.less'
 
-const store = Isomorph.createStore(window.__INITIAL_STATE__)
+const finalState = {}
+const {
+  routing,
+  ...reducers
+} = window.__INITIAL_STATE__ || {}
+
+if (reducers) {
+  for (let p in reducers) {
+    let reducer = reducers[p]
+    finalState[p] = Immutable.fromJS(reducer)
+  }
+}
+
+const store = Isomorph.createStore(finalState)
 const history = Isomorph.createHistory(store)
 
 const rootElement = document.getElementById('container')

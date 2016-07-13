@@ -14,4 +14,4 @@ new Koa()
   .use(serve(path.join(process.cwd(), 'static')))
   .listen(3003)
 
-console.log('listening on port 3003 --', process.env.NODE_ENV, process.env.__CLIENT__)
+console.log('listening on port 3003 --', process.env.NODE_ENV)
