@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { Button } from 'antd'
+import { Button, Input } from 'antd'
 
 export default class Control extends Component {
   static propTypes = {
@@ -12,15 +12,32 @@ export default class Control extends Component {
 
   render() {
     const {
-      name,
-      title,
-      entity,
-      field,
-      ctrlType,
+      cItemName,
+      cCaption,
+      cShowCaption,
+      iMaxLength,
+      iFieldType,
+      bMustSelect,
+      bHidden,
+      bCanModify,
+      iMaxShowLen,
+      iColWidth,
+      iAlign,
+      bShowIt,
+      bIsNull,
+      cControlType,
+      iOrder,
+      bMain,
+      id,
+      iParentId,
     } = this.props
+    console.log(this.props)
 
-    if (ctrlType === 'Button') {
+    if (cControlType === 'Button') {
       return <Button onClick={e => handleClick(e, entity) }>{title}</Button>
+
+    } else if (cControlType === 'Input') {
+      return <Input onClick={e => handleClick(e, entity) } />
     }
 
     return null

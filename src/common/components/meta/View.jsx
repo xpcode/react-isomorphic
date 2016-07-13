@@ -18,9 +18,10 @@ export default class View extends Component {
 
   render() {
     const {
-      name,
-      type,
-      iCols,
+      cTplGroupName,
+      iOrder,
+      bMain,
+      cGroupControlType,
       controls,
       containers,
     } = this.props
@@ -30,7 +31,7 @@ export default class View extends Component {
     if (containers.length > 0) {
       renderString = containers.map((item, i) => <View {...item} key={`view_${i}`} />)
 
-    } else if (type === 'Toolbar') {
+    } else if (cGroupControlType === 'TabPage') {
       renderString = controls.map((item, i) => <Control {...item} key={`control_${i}`} />)
     }
 
