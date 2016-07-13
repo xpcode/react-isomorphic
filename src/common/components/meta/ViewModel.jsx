@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { isArray, isString } from 'lodash'
 
-export default class Container extends Component {
+export default class ViewModel extends Component {
   static propTypes = {
     entities: PropTypes.array,
   }

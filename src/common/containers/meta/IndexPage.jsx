@@ -15,8 +15,8 @@ class IndexPage extends React.Component {
 
     return (
       <div>
-        <View {...viewApplication.view} key="view" />
-        <ViewModel {...viewmodel} key="viewmodel" />
+        <View {...viewApplication.view} key="view_root" />
+        <ViewModel {...viewmodel} key="viewmodel_root" />
       </div>
     )
   }

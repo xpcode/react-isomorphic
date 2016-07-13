@@ -3,7 +3,7 @@ import { isArray } from 'lodash'
 
 import Control from './Control'
 
-export default class Container extends Component {
+export default class View extends Component {
   static propTypes = {
     type: PropTypes.string.isRequired,
     name: PropTypes.string,
@@ -28,10 +28,10 @@ export default class Container extends Component {
     let renderString = null
 
     if (containers.length > 0) {
-      renderString = containers.map(item => <Container {...item} key={item.type + item.name} />)
+      renderString = containers.map((item, i) => <View {...item} key={`view_${i}`} />)
 
     } else if (type === 'Toolbar') {
-      renderString = controls.map(item => <Control {...item} key={item.type + item.name} />)
+      renderString = controls.map((item, i) => <Control {...item} key={`control_${i}`} />)
     }
 
     return <div>{renderString}</div>
