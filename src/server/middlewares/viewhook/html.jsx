@@ -1,4 +1,3 @@
-import path from 'path'
 import env from '../../../env'
 
 const baseUrl = process.env.NODE_ENV !== 'production' ?
@@ -14,8 +13,9 @@ export default function html(pageInfo, content, state) {
           <meta name="description" content=${pageInfo.description}/>
           <meta name="keyword" content=${pageInfo.keyword}/>
           <meta httpEquiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-          <link href="${baseUrl}/static/styles/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-          <link href="${baseUrl}/static/styles/default/index.css" rel="stylesheet" type="text/css" />
+          <!-- <link href="${baseUrl}/static/styles/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css" /> -->
+          <!-- <link href="${baseUrl}/static/styles/default/index.css" rel="stylesheet" type="text/css" /> -->
+          <link href="http://ant.design/index.css" rel="stylesheet" type="text/css" />
         </head>
         <body>
           <div id="container">

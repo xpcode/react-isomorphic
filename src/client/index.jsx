@@ -8,6 +8,7 @@ import { BaseIsomorph } from '../common/components'
 import routes from '../common/redux/routes'
 
 import './styles/default/login.less'
+import 'antd/lib/style/index'
 
 const finalState = {}
 const {

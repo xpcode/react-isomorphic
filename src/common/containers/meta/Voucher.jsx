@@ -13,8 +13,13 @@ class Voucher extends React.Component {
       viewmodel,
     } = this.props.meta
 
+    const styleObj = {
+      width: 760,
+      margin: '20 auto'
+    }
+
     return (
-      <div>
+      <div style={styleObj}>
         <View {...viewApplication.view} key="view_root" />
         <ViewModel {...viewmodel} key="viewmodel_root" />
       </div>

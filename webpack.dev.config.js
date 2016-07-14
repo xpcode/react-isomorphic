@@ -29,7 +29,8 @@ module.exports = {
         loader: 'url?limit=8192',
       }, {
         test: /\.(less)$/,
-        loader: ExtractTextPlugin.extract("style-loader", "css-loader", "less-loader"),
+        loaders: ["style-loader", "css-loader", "less-loader"]
+        // loader: ExtractTextPlugin.extract("style-loader", "css-loader", "less-loader"),
       }, {
         test: /\.(css)$/,
         loader: ExtractTextPlugin.extract("style-loader", "css-loader"),

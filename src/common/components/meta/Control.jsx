@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { Button, Input } from 'antd'
+import { Form, Input, Row, Col, Button, DatePicker } from 'antd'
 
 export default class Control extends Component {
   static propTypes = {
@@ -38,6 +38,9 @@ export default class Control extends Component {
 
     } else if (cControlType === 'Input') {
       return <Input onClick={e => handleClick(e, entity) } />
+
+    } else if (cControlType === 'DatePicker') {
+      return <DatePicker size="default" />
     }
 
     return null

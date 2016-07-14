@@ -1,9 +1,3 @@
-import React from 'react';
-window.React = React;
-
-import ReactDOM from 'react-dom';
-window.ReactDOM = ReactDOM;
-
 String.prototype.equalsIgnoreCase = function (str) {
     if (str == null) return false;
     return this.toLowerCase() === str.toLowerCase();
@@ -1227,5 +1221,3 @@ cb.rest.ContextBuilder = {
     }
 };
 cb.rest.ContextBuilder.construct();
-
-module.exports = cb;
