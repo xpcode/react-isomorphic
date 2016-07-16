@@ -1,24 +1,34 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Table } from 'antd'
+
+import {
+  queryUserBy
+} from '../../redux/modules/user'
 
 class UserList extends React.Component {
   componentDidMount() {
-    // this.constructor.fetchUsers()
+    this.props.queryUserBy()
   }
 
   render() {
+    const {
+      dataSource,
+      columns,
+    } = this.props.user
+
     return (
-      <div>
-        <span>11</span>
-      </div>
+      <Table dataSource={dataSource} columns={columns} />
     )
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    user: state.user
+    user: state.user.toJS()
   }
 }
 
-export default connect(mapStateToProps)(UserList)
+export default connect(mapStateToProps, {
+  queryUserBy
+})(UserList)

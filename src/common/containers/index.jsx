@@ -1,5 +1,5 @@
-export ErrorNotFound from './error/NotFound'
-export MetaIndexPage from './meta/Voucher'
+export ErrorNotFoundPage from './error/NotFound'
 export UserInfoPage from './user/UserInfo'
 export UserListPage from './user/UserList'
 export UserLoginPage from './user/UserLogin'
+export DefaultPage from './master/Default'

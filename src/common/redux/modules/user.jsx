@@ -11,37 +11,33 @@ export default ($$state = Immutable.fromJS({
     cname: null,
   },
   list: [],
+  dataSource: [],
+  columns: [],
 }), action) => {
   switch (action.type) {
+    case U8_USER_GETLIST_SUCCESS:
+      return $$state.merge(action.payload)
+
     default:
       return $$state
   }
 }
 
 
-export const ACTION_USER_LOGIN = 'ACTION_USER_LOGIN'  // 用户登陆
-export const ACTION_USER_LOGIN_SUCCESS = 'ACTION_USER_LOGIN_SUCCESS'  // 用户登陆成功
-export const ACTION_USER_LOGIN_FAILURE = 'ACTION_USER_LOGIN_FAILURE'  // 用户登陆失败
-
-/**
- * 用户登陆
- * @param username
- * @param password
- * @param remember
- * @returns {Function}
- */
-export const userLogin = (username, password, remember = false) => {
-  const login = (type, data) => {
-    return {
-      type,
-      payload: data
-    }
+// 用户登陆
+export const U8_USER_LOGIN = 'U8_USER_LOGIN'
+export const U8_USER_LOGIN_SUCCESS = 'U8_USER_LOGIN_SUCCESS'
+export const U8_USER_LOGIN_FAILURE = 'U8_USER_LOGIN_FAILURE'
+export function storeLogonInfo(type = U8_USER_LOGIN, info = {}) {
+  return {
+    type,
+    payload: info
   }
-
+}
+export const userLogin = (username, password, remember = false) => {
   return (dispatch, getState) => {
-
     // 登陆中，做禁用登陆 Button 等操作
-    dispatch(login(ACTION_USER_LOGIN))
+    dispatch(storeLogonInfo(U8_USER_LOGIN))
 
     let options = {
       method: 'post',
@@ -63,9 +59,31 @@ export const userLogin = (username, password, remember = false) => {
         return response.json()
       })
       .then(function (json) {
-        // set cookies
-        // document.cookie = 'user=' + json.username
-        dispatch(login(ACTION_USER_LOGIN_SUCCESS, json))
+        dispatch(storeLogonInfo(U8_USER_LOGIN_SUCCESS, json))
+      })
+  }
+}
+
+
+// 获取用户列表
+export const U8_USER_GETLIST = 'U8_USER_GETLIST'
+export const U8_USER_GETLIST_SUCCESS = 'U8_USER_GETLIST_SUCCESS'
+export const U8_USER_GETLIST_FAILURE = 'U8_USER_GETLIST_FAILURE'
+export function queryUserBy() {
+  return (dispatch, getState) => {
+    // 请求服务器接口
+    fetch('/users.do')
+      .then(function (response) {
+        if (response.status >= 400) {
+          throw new Error("Bad response from server")
+        }
+        return response.json()
+      })
+      .then(function (json) {
+        dispatch({
+          type: U8_USER_GETLIST_SUCCESS,
+          payload: json
+        })
       })
   }
 }
