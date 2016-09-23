@@ -10,44 +10,51 @@ module.exports = {
   },
   resolve: {
     extensions: ["", ".js", ".jsx"],
-    alias: {
-      common: path.join(__dirname, './common'),
-      client: path.join(__dirname, './client'),
-      immutable: path.join(__dirname, 'node_modules/immutable/dist/immutable.min'),
-      react: path.join(__dirname, 'node_modules/react/dist/react-with-addons.min'),
-      redux: path.join(__dirname, 'node_modules/redux/dist/redux.min'),
-      'react-dom': path.join(__dirname, 'node_modules/react-dom/dist/react-dom.min'),
-      'react-slick': path.join(__dirname, 'node_modules/react-slick/dist/react-slick.min'),
-      'react-proxy': path.join(__dirname, 'node_modules/react-proxy/dist/ReactProxy'),
-      'react-redux': path.join(__dirname, 'node_modules/react-redux/dist/react-redux.min'),
-      'react-router': path.join(__dirname, 'node_modules/react-router/umd/ReactRouter.min'),
-      'react-logger': path.join(__dirname, 'node_modules/react-logger/dist/index.min'),
-      'react-thunk': path.join(__dirname, 'node_modules/react-thunk/dist/redux-thunk.min'),
-    }
   },
   module: {
-    loaders: [{
-      test: /\.(js|jsx)$/,
-      loader: 'babel',
-      includes: ['common', 'client']
-    }, {
-        test: /\.(jpg|png|gif)$/,
+    root: origin,
+    modulesDirectories: ['node_modules'],
+    loaders: [
+      {
+        test: /\.js|jsx$/,
+        loader: 'babel',
+        include: origin,
+      }, {
+        test: /\.jpg|png|gif$/,
         loader: 'url',
+        include: origin,
       }, {
-        test: /\.(less)$/,
+        test: /\.less$/,
         loader: ExtractTextPlugin.extract("style-loader", "css-loader", "less-loader"),
+        include: origin,
       }, {
-        test: /\.(css)$/,
+        test: /\.css$/,
         loader: ExtractTextPlugin.extract("style-loader", "css-loader"),
-      }]
+        include: origin,
+      }
+    ]
   },
   plugins: [
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': '"production"',
       'process.env.__CLIENT__': 'true',
     }),
-    new webpack.NoErrorsPlugin(),
-    new webpack.optimize.UglifyJsPlugin(),
-    new ExtractTextPlugin("static/styles/default/index.css"),
-  ],
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      output: {
+        comments: false,
+      },
+      compress: {
+        warnings: false
+      }
+    }),
+    new webpack.DllReferencePlugin({
+      context: __dirname,
+      manifest: require('./manifest.production.json')
+    }),
+
+    new webpack.BannerPlugin(`code\nupdate: ${nowDateStr}`),
+    new ExtractTextPlugin("static/styles/default/[name].min.css"),
+  ]
 }
