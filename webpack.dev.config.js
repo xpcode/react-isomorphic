@@ -12,29 +12,32 @@ module.exports = {
   },
   resolve: {
     extensions: ["", ".js", ".jsx"],
-    alias: {
-      common: path.join(__dirname, './common'),
-      client: path.join(__dirname, './client'),
-      immutable: path.join(__dirname, 'node_modules/immutable/dist/immutable.min'),
-      'react-router': path.join(__dirname, 'node_modules/react-router/umd/ReactRouter.min'),
-    }
   },
   module: {
-    loaders: [{
-      test: /\.(js|jsx)$/,
-      loader: 'babel',
-      includes: ['common', 'client']
-    }, {
-        test: /\.(jpg|png|gif)$/,
+    root: origin,
+    modulesDirectories: ['node_modules'],
+    loaders: [
+      {
+        test: /\.js|jsx$/,
+        loader: 'babel',
+        include: origin,
+        query: {
+          cacheDirectory: true
+        }
+      }, {
+        test: /\.jpg|png|gif$/,
         loader: 'url?limit=8192',
+        include: origin,
       }, {
-        test: /\.(less)$/,
-        loaders: ["style-loader", "css-loader", "less-loader"]
-        // loader: ExtractTextPlugin.extract("style-loader", "css-loader", "less-loader"),
+        test: /\.less$/,
+        loaders: ["style-loader", "css-loader", "less-loader"],
+        include: origin,
       }, {
-        test: /\.(css)$/,
-        loader: ExtractTextPlugin.extract("style-loader", "css-loader"),
-      }]
+        test: /\.css$/,
+        loaders: ["style-loader", "css-loader"],
+        include: origin,
+      }
+    ]
   },
   postcss: [
     autoprefixer({
@@ -46,18 +49,21 @@ module.exports = {
       'process.env.NODE_ENV': '"development"',
       'process.env.__CLIENT__': 'true',
     }),
+    new webpack.DllReferencePlugin({
+      context: __dirname,
+      manifest: require('./manifest.development.json')
+    }),
     new webpack.NoErrorsPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new ExtractTextPlugin("static/styles/default/index.css"),
   ],
   devServer: {
     headers: {
       "Access-Control-Allow-Origin": "*"
     },
-    devtool: 'eval',
     hot: true,
     inline: true,
     port: 3004,
   },
   devtool: 'source-map',
+  cache: true,
 }
